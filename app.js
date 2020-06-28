@@ -1,7 +1,8 @@
+//! TODO 
+// add dates (use moment.js)
 
-
-currentWeather("Toronto");
-fiveDayForecast("Toronto");
+//currentWeather("Toronto");
+//fiveDayForecast("Toronto");
 
 function currentWeather(searchCity){
     console.log("[currentWeather fn ]");
@@ -14,7 +15,19 @@ function currentWeather(searchCity){
         method: "GET"
     }).then( ( response ) => {
         console.log("Current weather data >>", response )
+        let currentData = {
+            cityName: response.name, 
+            description: response.weather[0].description,
+            temp: response.main.temp,
+            humidity: response.main.humidity,
+            windspeed: response.wind.speed
+        }
+        
+        console.log(currentData)
+    
     } );
+
+   
 
 };
 
@@ -29,6 +42,21 @@ function fiveDayForecast(searchCity){
         method: "GET"
     }).then( ( response ) => {
         console.log("5 day forecast data >>", response)
+
+        
+
     });
 
+    
 };
+
+function handleClick(){
+    console.log("getting weather data")
+    currentWeather("Toronto");
+    fiveDayForecast("Toronto");
+};
+
+const testBtn = document.getElementById('testBtn');
+
+testBtn.addEventListener('click', handleClick );
+
