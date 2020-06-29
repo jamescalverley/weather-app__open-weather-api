@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <title>Weather API</title>
 </head>
 <body>
 
     <h1>WEATHER API</h1>
+
+    <div class="input-group mb-3">
+        <input id="searchField" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button id="searchBtn" class="btn btn-outline-secondary" type="button">Search</button>
+        </div>
+    </div>
     <button id="testBtn">GET DATA</button>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./app.js"></script>
 </body>
 </html>

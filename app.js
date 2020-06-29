@@ -83,19 +83,21 @@ async function fiveDayForecast(searchCity){
     console.log(forecastData)    
     // add div to display each forecast day 
     // forEach object in array >> display a card in the above div    
-
+    forecastData.forEach((day) => {
+        console.log(day)
+        console.log(day.date)
+    })
     });
-
-    
 };
+
+let searchBtn = document.getElementById('searchBtn');
 
 function handleClick(){
-    console.log("getting weather data")
-    currentWeather("Toronto");
-    fiveDayForecast("Toronto");
+    let searchValue = document.getElementById('searchField').value;
+    console.log("search value:", searchValue)
+    currentWeather(searchValue);
+    fiveDayForecast(searchValue);
 };
 
-const testBtn = document.getElementById('testBtn');
-
-testBtn.addEventListener('click', handleClick );
+searchBtn.addEventListener('click', handleClick );
 
