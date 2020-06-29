@@ -4,7 +4,7 @@
 //currentWeather("Toronto");
 //fiveDayForecast("Toronto");
 
-function currentWeather(searchCity){
+async function currentWeather(searchCity){
     console.log("[currentWeather fn ]");
 
     let apiKey = "4e033b3f0bf4413196c595a89671e437";
@@ -21,17 +21,14 @@ function currentWeather(searchCity){
             temp: response.main.temp,
             humidity: response.main.humidity,
             windspeed: response.wind.speed
-        }
+        };
         
         console.log(currentData)
     
     } );
-
-   
-
 };
 
-function fiveDayForecast(searchCity){
+async function fiveDayForecast(searchCity){
     console.log("[fiveDayForcast fn ]");
 
     let apiKey = "4e033b3f0bf4413196c595a89671e437";
@@ -43,7 +40,49 @@ function fiveDayForecast(searchCity){
     }).then( ( response ) => {
         console.log("5 day forecast data >>", response)
 
-        
+    // create array of objects to hold all forecast data
+
+    let forecastData = [
+        {
+            date: response.list[3].dt_txt,
+            icon: response.list[3].weather[0].icon,
+            description: response.list[3].weather[0].description,
+            temp: response.list[3].main.temp,
+            humidity: response.list[3].main.humidity        
+        },
+        {
+            date: response.list[11].dt_txt,
+            icon: response.list[11].weather[0].icon,
+            description: response.list[11].weather[0].description,
+            temp: response.list[11].main.temp,
+            humidity: response.list[11].main.humidity        
+        },
+        {
+            date: response.list[19].dt_txt,
+            icon: response.list[19].weather[0].icon,
+            description: response.list[19].weather[0].description,
+            temp: response.list[19].main.temp,
+            humidity: response.list[19].main.humidity        
+        },
+        {
+            date: response.list[27].dt_txt,
+            icon: response.list[27].weather[0].icon,
+            description: response.list[27].weather[0].description,
+            temp: response.list[27].main.temp,
+            humidity: response.list[27].main.humidity        
+        },
+        {
+            date: response.list[35].dt_txt,
+            icon: response.list[35].weather[0].icon,
+            description: response.list[35].weather[0].description,
+            temp: response.list[35].main.temp,
+            humidity: response.list[35].main.humidity        
+        }
+    ]; 
+
+    console.log(forecastData)    
+    // add div to display each forecast day 
+    // forEach object in array >> display a card in the above div    
 
     });
 
