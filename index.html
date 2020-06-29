@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Weather API</title>
 </head>
 <body>
@@ -17,9 +18,19 @@
           <button id="searchBtn" class="btn btn-outline-secondary" type="button">Search</button>
         </div>
     </div>
-    <button id="testBtn">GET DATA</button>
+    
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <div class="current-weather-t">
+        <div id="cur-city-name-t"></div>
+        <div id="cur-description-t"></div>
+        <div id="cur-temp-t"></div>
+        <div id="cur-humidity-t"></div>
+        <div id="cur-windspeed-t"></div>
+    </div>
+    <div class="forecast-weather-t"></div>
+
+    
+    
     <script src="./app.js"></script>
 </body>
 </html>

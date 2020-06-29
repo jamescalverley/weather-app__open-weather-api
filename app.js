@@ -4,6 +4,10 @@
 //currentWeather("Toronto");
 //fiveDayForecast("Toronto");
 
+//const currentDisplay = document.getElementById('current-weather');
+
+
+
 async function currentWeather(searchCity){
     console.log("[currentWeather fn ]");
 
@@ -18,10 +22,16 @@ async function currentWeather(searchCity){
         let currentData = {
             cityName: response.name, 
             description: response.weather[0].description,
-            temp: response.main.temp,
+            temp: Math.floor(response.main.temp - 273.15),
             humidity: response.main.humidity,
             windspeed: response.wind.speed
         };
+        $("#cur-city-name-t").text(currentData.cityName);
+        $("#cur-description-t").text(currentData.description);
+        $("#cur-temp-t").text(currentData.temp);
+        $("#cur-humidity-t").text(currentData.humidity);
+        $("#cur-windspeed-t").text(currentData.windspeed);
+        
         
         console.log(currentData)
     
@@ -94,10 +104,15 @@ let searchBtn = document.getElementById('searchBtn');
 
 function handleClick(){
     let searchValue = document.getElementById('searchField').value;
-    console.log("search value:", searchValue)
-    currentWeather(searchValue);
-    fiveDayForecast(searchValue);
+    if( !searchValue ) {
+        console.log("no search value!")
+        return 
+    } else {
+        console.log("search value:", searchValue)
+        currentWeather(searchValue);
+        fiveDayForecast(searchValue);
+    }
+    
 };
 
 searchBtn.addEventListener('click', handleClick );
-
