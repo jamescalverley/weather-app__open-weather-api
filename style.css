@@ -1,0 +1,20 @@
+.current-weather-t {
+    background-color: cadetblue;
+    padding: 20px;
+}
+.forecast-weather-t {
+    background-color: cornsilk;
+}
+
+#forecast-weather-t {
+    background-color: darkgrey;
+    padding: 40px;
+}
+.forecast-day-t {
+    background-color: crimson;
+    min-width: 50px;
+    width: auto;
+    min-height: 50px;
+    margin: 10px;
+    padding: 20px;
+}
