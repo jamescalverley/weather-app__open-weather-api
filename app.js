@@ -1,14 +1,17 @@
 //! TODO 
-// pass all api data
+//* COMPLETE pass all api data
 // create list of searched cities
 // add UV index function
 // add dates (use moment.js)
 
 // research designs (dark and light theme)
-//currentWeather("Toronto");
-//fiveDayForecast("Toronto");
+// currentWeather("Toronto");
+// fiveDayForecast("Toronto");
 
 //const currentDisplay = document.getElementById('current-weather');
+
+
+let pastSearch = [];
 
 
 
@@ -37,7 +40,8 @@ async function currentWeather(searchCity){
         $("#cur-windspeed-t").text(currentData.windspeed);
         
         console.log(currentData)
-    
+        saveCity( currentData.cityName );
+        storeCities();
     } );
 };
 
@@ -99,9 +103,7 @@ async function fiveDayForecast(searchCity){
     //     $(".fore-date-t").text(forecastData[i].date);
     //     $(".fore-description-t").text(forecastData[i].description);
     // }
-  
     forecastData.forEach( (forecastDay) => {
-        
         document.getElementById('forecast-weather-t').innerHTML += `
         <div class="forecast-day-t">
             <div class="fore-date-t">${forecastDay.date}</div>
@@ -110,11 +112,7 @@ async function fiveDayForecast(searchCity){
             <div class="fore-temp-t">${forecastDay.temp}</div>
             <div class="fore-humidity-t">${forecastDay.humidity}</div>
         </div>`
-       
-        
-
-    })
-
+    });
     });
 };
 
@@ -131,3 +129,14 @@ function handleClick(){
 };
 
 $("#searchBtn").on("click", handleClick);
+
+function saveCity( city ){
+    pastSearch.push(city);
+    console.log("saved cities: ", pastSearch )
+};
+
+function storeCities(){
+    console.log("saving to local storage")
+    localStorage.setItem("searchedCities:", JSON.stringify(pastSearch));
+};
+
