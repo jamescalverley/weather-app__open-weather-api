@@ -127,9 +127,16 @@ function handleClick(){
         currentWeather(searchValue);
         fiveDayForecast(searchValue);
     }
+    $('#searchField').val("");
+    
 };
 
 $("#searchBtn").on("click", handleClick);
+document.addEventListener('keydown', (event) => {
+    if( event.keyCode === 13 ) {
+        handleClick();
+    }
+})
 
 function saveCity( city ){
     if( searchCities.length < 5 ) {
