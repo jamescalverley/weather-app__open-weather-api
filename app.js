@@ -13,13 +13,12 @@
 
 
 let searchCities = [];
+let apiKey = "4e033b3f0bf4413196c595a89671e437";
 
 
 
 async function currentWeather(searchCity){
-    console.log("[currentWeather fn ]");
-
-    let apiKey = "4e033b3f0bf4413196c595a89671e437";
+    console.log("[currentWeather fn ]");    
     let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${apiKey}`;
 
     $.ajax({
@@ -32,24 +31,46 @@ async function currentWeather(searchCity){
             description: response.weather[0].description,
             temp: Math.floor(response.main.temp - 273.15),
             humidity: response.main.humidity,
-            windspeed: response.wind.speed
+            windspeed: response.wind.speed, 
+            coordLAT: response.coord.lat, 
+            coordLON: response.coord.lon
         };
         $("#cur-city-name-t").text(currentData.cityName);
         $("#cur-description-t").text(currentData.description);
-        $("#cur-temp-t").text(currentData.temp);
-        $("#cur-humidity-t").text(currentData.humidity);
-        $("#cur-windspeed-t").text(currentData.windspeed);
+        $("#cur-temp-t").text(`Temp: ${currentData.temp}`);
+        $("#cur-humidity-t").text(`Humidity: ${currentData.humidity}`);
+        $("#cur-windspeed-t").text(`Windspeed: ${currentData.windspeed}`);
         
         console.log(currentData)
         saveCity( currentData.cityName );
         storeCities();
+        getUVIndex(currentData.coordLAT, currentData.coordLON);
     } );
 };
 
+async function getUVIndex(coordLAT, coordLON){
+    console.log(` [getUVIndex] : LAT: ${coordLAT} LON: ${coordLON}`)
+    let queryURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${coordLAT}&lon=${coordLON}`
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then( ( response) => {
+        let uvIndex = response.value;
+
+        $("#cur-uvIndexValue-t").text(`UV: ${uvIndex}`);
+        // document.getElementById('uvIndexValue').innerText = uvIndex;
+        // if(uvIndex <= 3){
+        //     document.getElementById('uvIndexValue').className = "badge badge-success";
+        // }if(uvIndex > 3 && uvIndex <= 7){
+        //     document.getElementById('uvIndexValue').className = "badge badge-warning";
+        // }if(uvIndex > 7){
+        //     document.getElementById('uvIndexValue').className = "badge badge-danger";
+        // }
+    });
+}
+
 async function fiveDayForecast(searchCity){
     console.log("[fiveDayForcast fn ]");
-
-    let apiKey = "4e033b3f0bf4413196c595a89671e437";
     let queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${searchCity}&appid=${apiKey}`;
 
     $.ajax({
@@ -57,7 +78,6 @@ async function fiveDayForecast(searchCity){
         method: "GET"
     }).then( ( response ) => {
         console.log("5 day forecast data >>", response)
-
     // create array of objects to hold all forecast data
 
     let forecastData = [
@@ -107,11 +127,11 @@ async function fiveDayForecast(searchCity){
     forecastData.forEach( (forecastDay) => {
         document.getElementById('forecast-weather-t').innerHTML += `
         <div class="forecast-day-t">
-            <div class="fore-date-t">${forecastDay.date}</div>
-            <div class="fore-icon-t">${forecastDay.icon}</div>
-            <div class="fore-description-t">${forecastDay.description}</div>
-            <div class="fore-temp-t">${forecastDay.temp}</div>
-            <div class="fore-humidity-t">${forecastDay.humidity}</div>
+            <div class="fore-date-t">Date: ${forecastDay.date}</div>
+            <div class="fore-icon-t">Icon: ${forecastDay.icon}</div>
+            <div class="fore-description-t">Description: ${forecastDay.description}</div>
+            <div class="fore-temp-t">Temp: ${forecastDay.temp}</div>
+            <div class="fore-humidity-t">Humidity: ${forecastDay.humidity}</div>
         </div>`
     });
     });
