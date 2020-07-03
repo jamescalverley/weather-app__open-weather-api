@@ -1,6 +1,7 @@
 //! TODO 
 //* COMPLETE pass all api data
 // create list of searched cities
+// disallow duplicates in search array
 // add UV index function
 // add dates (use moment.js)
 
@@ -11,7 +12,7 @@
 //const currentDisplay = document.getElementById('current-weather');
 
 
-let pastSearch = [];
+let searchCities = [];
 
 
 
@@ -131,12 +132,29 @@ function handleClick(){
 $("#searchBtn").on("click", handleClick);
 
 function saveCity( city ){
-    pastSearch.push(city);
-    console.log("saved cities: ", pastSearch )
+    if( searchCities.length < 5 ) {
+        searchCities.unshift(city)
+    } if( searchCities.length >= 5 ) {
+        searchCities.pop()
+        searchCities.unshift(city)
+    };
+    console.log("saved cities: ", searchCities )
 };
 
 function storeCities(){
-    console.log("saving to local storage")
-    localStorage.setItem("searchedCities:", JSON.stringify(pastSearch));
+    localStorage.setItem("searchedCities:", JSON.stringify(searchCities));
 };
 
+function renderSearchedList(){
+    console.log("[renderSearchedList]")
+};
+
+function init(){
+    let storedCities = JSON.parse(localStorage.getItem("searchedCities:"));
+    console.log("getting from local storage >>>", storedCities )
+    if( storedCities != null ) {
+        searchCities = storedCities
+    };
+};
+
+init();
