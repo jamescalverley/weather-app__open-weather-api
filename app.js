@@ -184,4 +184,18 @@ function init(){
     };
 };
 
+let themeSlider = document.getElementById("theme-slider")
+
+function themeSelect(){
+    if( themeSlider.checked ) {
+        console.log("slider CHECKED")
+    } if( !themeSlider.checked) {
+        console.log("slider NOT CHECKED")
+    };
+};
+
+document.getElementById("theme-slider").addEventListener('change', themeSelect );
+themeSlider.addEventListener('change', themeSelect );
+
 init();
+
