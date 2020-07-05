@@ -19,6 +19,16 @@
     padding: 20px;
 }
 
+.test-light {
+    background-color:lightblue;
+    height: 200px;
+    margin: 30px;
+}
+.test-dark {
+    background-color: darkblue;
+    height: 200px;
+    margin: 30px;
+}
 
 
 

@@ -184,13 +184,16 @@ function init(){
     };
 };
 
-let themeSlider = document.getElementById("theme-slider")
+let themeSlider = document.getElementById("theme-slider");
+let testBox = document.getElementById("test-box");
 
 function themeSelect(){
     if( themeSlider.checked ) {
         console.log("slider CHECKED")
+        testBox.className = "test-dark"
     } if( !themeSlider.checked) {
         console.log("slider NOT CHECKED")
+        testBox.className = "test-light"
     };
 };
 
