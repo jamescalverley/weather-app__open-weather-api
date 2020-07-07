@@ -11,10 +11,12 @@
 
 //const currentDisplay = document.getElementById('current-weather');
 
+//require('dotenv').config();
+//console.log("PROCESS.ENV", process.env )
+//let apiKey = process.env.API_KEY
 
 let searchCities = [];
 let apiKey = "4e033b3f0bf4413196c595a89671e437";
-
 
 
 async function currentWeather(searchCity){
