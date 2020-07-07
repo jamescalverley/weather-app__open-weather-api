@@ -2,8 +2,9 @@
 //* COMPLETE pass all api data
 // create list of searched cities
 // disallow duplicates in search array
-// add UV index function
+//* COMPLETE add UV index function
 // add dates (use moment.js)
+// add alert for search with no match
 
 // research designs (dark and light theme)
 // currentWeather("Toronto");
@@ -11,16 +12,12 @@
 
 //const currentDisplay = document.getElementById('current-weather');
 
-
 let searchCities = [];
 let apiKey = "4e033b3f0bf4413196c595a89671e437";
-
-
 
 async function currentWeather(searchCity){
     console.log("[currentWeather fn ]");    
     let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${apiKey}`;
-
     $.ajax({
         url: queryURL, 
         method: "GET"
@@ -56,7 +53,6 @@ async function getUVIndex(coordLAT, coordLON){
         method: "GET"
     }).then( ( response) => {
         let uvIndex = response.value;
-
         $("#cur-uvIndexValue-t").text(`UV: ${uvIndex}`);
         // document.getElementById('uvIndexValue').innerText = uvIndex;
         // if(uvIndex <= 3){
@@ -72,14 +68,12 @@ async function getUVIndex(coordLAT, coordLON){
 async function fiveDayForecast(searchCity){
     console.log("[fiveDayForcast fn ]");
     let queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${searchCity}&appid=${apiKey}`;
-
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then( ( response ) => {
         console.log("5 day forecast data >>", response)
     // create array of objects to hold all forecast data
-
     let forecastData = [
         {
             date: response.list[3].dt_txt,
@@ -184,21 +178,28 @@ function init(){
     };
 };
 
-let themeSlider = document.getElementById("theme-slider");
-let testBox = document.getElementById("test-box");
+// let themeSlider = document.getElementById("theme-slider");
+// let testBox = document.getElementById("test-box");
 
-function themeSelect(){
-    if( themeSlider.checked ) {
-        console.log("slider CHECKED")
-        testBox.className = "test-dark"
-    } if( !themeSlider.checked) {
-        console.log("slider NOT CHECKED")
-        testBox.className = "test-light"
-    };
+// function themeSelect(){
+//     if( themeSlider.checked ) {
+//         console.log("slider CHECKED")
+//         testBox.className = "test-dark"
+//     } if( !themeSlider.checked) {
+//         console.log("slider NOT CHECKED")
+//         testBox.className = "test-light"
+//     };
+// };
+
+// document.getElementById("theme-slider").addEventListener('change', themeSelect );
+// themeSlider.addEventListener('change', themeSelect );
+
+// for working on UI
+function uiWork(){
+    currentWeather("Toronto");
+    fiveDayForecast("Toronto");
 };
 
-document.getElementById("theme-slider").addEventListener('change', themeSelect );
-themeSlider.addEventListener('change', themeSelect );
-
+uiWork();
 init();
 
