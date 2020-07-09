@@ -1,6 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    padding: 40px 120px 40px 120px;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 460px 1fr 1fr;
+    grid-template-rows: 100px 1fr 1fr; 
+    grid-gap: 30px;;
+    grid-template-areas: 
+    "header header header"
+    "title current current"
+    "forecast forecast forecast"
+    ;
+}
+.display {
+    border-radius: 20px;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 0px;
+}
+.container-search {
+    grid-area: header;
+    padding: 1.5rem;
+}
+.container-title {
+  grid-area: title;
+  padding: 3rem;
+}
+.container-current {
+    grid-area: current
+}
+.container-forecast {
+    grid-area: forecast;
+}
+.input-group {
+    max-width: 500px;
+} 
+
+
 .current-weather-t {
-    background-color: cadetblue;
-    padding: 20px;
+  
+    padding: 3rem;
 }
 .forecast-weather-t {
     background-color: cornsilk;
@@ -9,6 +56,7 @@
 #forecast-weather-t {
     background-color: darkgrey;
     padding: 40px;
+    display: flex;
 }
 .forecast-day-t {
     background-color: crimson;
