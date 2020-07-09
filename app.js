@@ -146,8 +146,7 @@ function handleClick(){
         currentWeather(searchValue);
         fiveDayForecast(searchValue);
     }
-    $('#searchField').val("");
-    
+    $('#searchField').val("");    
 };
 
 $("#searchBtn").on("click", handleClick);
@@ -155,16 +154,17 @@ document.addEventListener('keydown', (event) => {
     if( event.keyCode === 13 ) {
         handleClick();
     }
-})
+});
 
 function saveCity( city ){
-    if( searchCities.length < 5 ) {
+    if( searchCities.length < 7 ) {
         searchCities.unshift(city)
-    } if( searchCities.length >= 5 ) {
+    } if( searchCities.length >= 7 ) {
         searchCities.pop()
         searchCities.unshift(city)
     };
     console.log("saved cities: ", searchCities )
+    renderSearchedList();
 };
 
 function storeCities(){
@@ -172,7 +172,13 @@ function storeCities(){
 };
 
 function renderSearchedList(){
-    console.log("[renderSearchedList]")
+    console.log("[renderSearchedList]")  
+    document.getElementById('recent-search').innerHTML = "Recent cities:"
+    searchCities.forEach( (searchCity) => {
+        document.getElementById('recent-search').innerHTML += `
+        <button class="btn btn-sm btn-outline-secondary" type="button">${searchCity}</button>
+        `
+    })
 };
 
 function init(){
@@ -181,6 +187,8 @@ function init(){
     if( storedCities != null ) {
         searchCities = storedCities
     };
+    console.log("searchCities", searchCities)
+    renderSearchedList();
 };
 
 // let themeSlider = document.getElementById("theme-slider");
@@ -205,6 +213,6 @@ function uiWork(){
     fiveDayForecast("Toronto");
 };
 
-uiWork();
+// uiWork();
 init();
 

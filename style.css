@@ -12,10 +12,10 @@ body {
 .main {
     display: grid;
     grid-template-columns: 460px 1fr 1fr;
-    grid-template-rows: 100px 1fr 1fr; 
+    grid-template-rows: auto 1fr 1fr; 
     grid-gap: 30px;;
     grid-template-areas: 
-    "header header header"
+    "search search search"
     "title current current"
     "forecast forecast forecast"
     ;
@@ -27,7 +27,7 @@ body {
     margin: 0px;
 }
 .container-search {
-    grid-area: header;
+    grid-area: search;
     padding: 1.5rem;
 }
 .container-title {
