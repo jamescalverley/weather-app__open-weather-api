@@ -19,7 +19,6 @@
 let searchCities = [];
 let apiKey = "4e033b3f0bf4413196c595a89671e437";
 
-
 async function currentWeather(searchCity){
     console.log("[currentWeather fn ]");    
     let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${apiKey}`;
@@ -156,16 +155,29 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-function saveCity( city ){
-    if( searchCities.length < 7 ) {
-        searchCities.unshift(city)
-    } if( searchCities.length >= 7 ) {
-        searchCities.pop()
-        searchCities.unshift(city)
-    };
-    console.log("saved cities: ", searchCities )
-    renderSearchedList();
+function handleRecentSearch(recentCity){
+    console.log("[handleRecentSearch fn ]");
+    currentWeather(recentCity);
+    fiveDayForecast(recentCity);
 };
+
+function saveCity( city ){
+    console.log("**** running saveCity() >> saving", city)
+
+    if( searchCities.indexOf(city) !== -1 ){
+        console.log("city already exists")
+        return 
+    } else {
+        if( searchCities.length < 7 ) {
+            searchCities.unshift(city)
+        } if( searchCities.length >= 7 ) {
+            searchCities.pop()
+            searchCities.unshift(city)
+        };
+        console.log("saved cities: ", searchCities )
+        renderSearchedList();
+    };  
+    };
 
 function storeCities(){
     localStorage.setItem("searchedCities:", JSON.stringify(searchCities));
@@ -176,7 +188,7 @@ function renderSearchedList(){
     document.getElementById('recent-search').innerHTML = "Recent cities:"
     searchCities.forEach( (searchCity) => {
         document.getElementById('recent-search').innerHTML += `
-        <button class="btn btn-sm btn-outline-secondary" type="button">${searchCity}</button>
+        <button class="btn btn-sm btn-outline-secondary" onClick="handleRecentSearch('${searchCity}')" type="button">${searchCity}</button>
         `
     })
 };
