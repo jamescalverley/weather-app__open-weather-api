@@ -116,14 +116,11 @@ async function fiveDayForecast(searchCity){
         }
     ]; 
     console.log(forecastData)  
-    console.log("array length:", forecastData.length)  
-    // for( i = 0; i < forecastData.length; i++) {
-    //     console.log("running ")
-    //     $(".fore-date-t").text(forecastData[i].date);
-    //     $(".fore-description-t").text(forecastData[i].description);
-    // }
+    let forecastDisplay = document.getElementById('forecast-weather-t');
+    forecastDisplay.innerHTML = "";
+
     forecastData.forEach( (forecastDay) => {
-        document.getElementById('forecast-weather-t').innerHTML += `
+        forecastDisplay.innerHTML += `
         <div class="forecast-day-t">
             <div class="fore-date-t">Date: ${forecastDay.date}</div>
             <div class="fore-icon-t">Icon: ${forecastDay.icon}</div>
