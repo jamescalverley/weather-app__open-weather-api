@@ -181,6 +181,15 @@ function renderSearchedList(){
     })
 };
 
+function clearSearches(){
+    console.log("----clearing recent searches")
+    searchCities = [];
+    localStorage.clear();
+    renderSearchedList();
+};
+
+$('#clear-search').on('click', clearSearches)
+
 function init(){
     let storedCities = JSON.parse(localStorage.getItem("searchedCities:"));
     console.log("getting from local storage >>>", storedCities )
