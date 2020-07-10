@@ -39,7 +39,7 @@ async function currentWeather(searchCity){
         let degree = String.fromCharCode(176);
         $("#cur-city-name-t").text(currentData.cityName);
         $("#cur-description-t").text(currentData.description);
-        $("#cur-date-t").text(moment(currentData.dt).format("dddd MMMM DD YYYY"))
+        $("#cur-date-t").text(moment().format("dddd MMMM Do YYYY"))
         $("#cur-temp-t").text(`Temperature: ${currentData.temp}${degree}C`);
         $("#cur-humidity-t").text(`Humidity: ${currentData.humidity} %`);
         $("#cur-windspeed-t").text(`Windspeed: ${currentData.windspeed} km/h`);
