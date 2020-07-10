@@ -38,12 +38,25 @@ body {
     padding: 1.5rem;
     
 }
+
+
+
+/* CURRENT WEATHER TITLE DISPLAY */
 .container-title {
   grid-area: title;
-  padding: 3rem;
+  padding: 1rem 2rem 1rem 2rem;
   font-family: var(--font-family);
-  
+  display: inline-block
 }
+
+.current-title-t {
+  float: left;
+  margin-top: 10px;
+}
+.cur-icon-t {
+  float: right;
+}
+
 #cur-city-name-t {
   font-size: var(--font-size-head);
 }
@@ -51,7 +64,8 @@ body {
 
 
 
-/* CURRENT WEATHER DISPLAY */
+
+/* CURRENT WEATHER METRICS DISPLAY */
 .container-current {
   grid-area: current;
   padding: 2rem;

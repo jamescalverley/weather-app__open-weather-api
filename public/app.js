@@ -30,6 +30,7 @@ async function currentWeather(searchCity){
         let currentData = {
             cityName: response.name, 
             description: response.weather[0].description,
+            icon: "./Assets/current/clear-sky-128.png",
             temp: Math.floor(response.main.temp - 273.15),
             humidity: response.main.humidity,
             windspeed: response.wind.speed, 
@@ -39,7 +40,8 @@ async function currentWeather(searchCity){
         let degree = String.fromCharCode(176);
         $("#cur-city-name-t").text(currentData.cityName);
         $("#cur-description-t").text(currentData.description);
-        $("#cur-date-t").text(moment().format("dddd MMMM Do YYYY"))
+        $("#cur-date-t").text(moment().format("dddd MMMM Do YYYY"));
+        $("#current-icon").attr("src", currentData.icon);
         $("#cur-temp-t").text(`Temperature: ${currentData.temp}${degree}C`);
         $("#cur-humidity-t").text(`Humidity: ${currentData.humidity} %`);
         $("#cur-windspeed-t").text(`Windspeed: ${currentData.windspeed} km/h`);
