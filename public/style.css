@@ -51,7 +51,7 @@ body {
 
 
 
-
+/* CURRENT WEATHER DISPLAY */
 .container-current {
   grid-area: current;
   padding: 2rem;
@@ -116,27 +116,34 @@ body {
 } 
 
 
-.current-weather-t {
-  
-    padding: 3rem;
-}
-.forecast-weather-t {
-    background-color: cornsilk;
-}
-
+/* FORECAST WEATHER DISPLAY */
 #forecast-weather-t {
-    background-color: darkgrey;
-    padding: 40px;
+    padding: 20px;
     display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
 }
 .forecast-day-t {
-    background-color: crimson;
+    border: 1px solid black;
+    border-radius: 1em;
     min-width: 50px;
-    width: auto;
     min-height: 50px;
+    height: auto;
     margin: 10px;
     padding: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 .test-light {
     background-color:lightblue;

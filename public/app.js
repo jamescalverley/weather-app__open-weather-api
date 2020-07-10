@@ -37,11 +37,12 @@ async function currentWeather(searchCity){
             coordLAT: response.coord.lat, 
             coordLON: response.coord.lon
         };
+        let degree = String.fromCharCode(176);
         $("#cur-city-name-t").text(currentData.cityName);
         $("#cur-description-t").text(currentData.description);
-        $("#cur-temp-t").text(`Temp: ${currentData.temp}`);
-        $("#cur-humidity-t").text(`Humidity: ${currentData.humidity}`);
-        $("#cur-windspeed-t").text(`Windspeed: ${currentData.windspeed}`);
+        $("#cur-temp-t").text(`Temperature: ${currentData.temp}${degree}C`);
+        $("#cur-humidity-t").text(`Humidity: ${currentData.humidity} %`);
+        $("#cur-windspeed-t").text(`Windspeed: ${currentData.windspeed} km/h`);
         
         console.log(currentData)
         saveCity( currentData.cityName );
@@ -118,16 +119,17 @@ async function fiveDayForecast(searchCity){
     ]; 
     console.log(forecastData)  
     let forecastDisplay = document.getElementById('forecast-weather-t');
+    let degree = String.fromCharCode(176);
     forecastDisplay.innerHTML = "";
 
     forecastData.forEach( (forecastDay) => {
         forecastDisplay.innerHTML += `
         <div class="forecast-day-t">
-            <div class="fore-date-t">Date: ${forecastDay.date}</div>
-            <div class="fore-icon-t">Icon: ${forecastDay.icon}</div>
-            <div class="fore-description-t">Description: ${forecastDay.description}</div>
-            <div class="fore-temp-t">Temp: ${forecastDay.temp}</div>
-            <div class="fore-humidity-t">Humidity: ${forecastDay.humidity}</div>
+            <div class="fore-date-t">DATE</div>
+            <div class="fore-icon-t">ICON</div>
+            <div class="fore-description-t">${forecastDay.description}</div>
+            <div class="fore-temp-t">Temp: ${forecastDay.temp}${degree}C</div>
+            <div class="fore-humidity-t">Humidity: ${forecastDay.humidity} %</div>
         </div>`
     });
     });
