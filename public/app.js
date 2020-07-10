@@ -17,19 +17,6 @@
 //let apiKey = process.env.API_KEY
 
 
-
-// const express = require('express');
-// const app = express();
-// // const { JSDOM } = require( "jsdom" );
-// // const { window } = new JSDOM( "" );
-// const $ = require( "jquery" );
-
-// const PORT = 8080;
-
-// app.get('/', (req, res) => res.send("Weather APP"));
-
-
-
 let searchCities = [];
 let apiKey = "4e033b3f0bf4413196c595a89671e437";
 
@@ -245,10 +232,8 @@ function uiWork(){
     fiveDayForecast("Toronto");
 };
 
-// uiWork();
+uiWork();
 init();
 
-// app.listen( PORT, () => {
-//     console.log(`Weather App running at http://localhost:${PORT}`)
-// });
+
 

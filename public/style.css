@@ -6,14 +6,21 @@
 body {
     width: 100%;
     height: 100vh;
-    padding: 80px 120px 40px 120px;
+    padding: 60px 120px 5px 120px;
+}
+
+
+:root {
+  --font-family: 'Roboto', sans-serif;
+  --font-size-head: 3rem;
+  --font-size-subhead: 1.5rem;
 }
 
 .main {
     display: grid;
-    grid-template-columns: 460px 1fr 1fr;
-    grid-template-rows: auto 1fr 1fr; 
-    grid-gap: 30px;;
+    grid-template-columns: 400px 1fr 1fr;
+    grid-template-rows: auto auto 1fr; 
+    grid-gap: 30px;
     grid-template-areas: 
     "search search search"
     "title current current"
@@ -29,14 +36,78 @@ body {
 .container-search {
     grid-area: search;
     padding: 1.5rem;
+    
 }
 .container-title {
   grid-area: title;
   padding: 3rem;
+  font-family: var(--font-family);
+  
 }
+#cur-city-name-t {
+  font-size: var(--font-size-head);
+}
+
+
+
+
+
 .container-current {
-    grid-area: current
+  grid-area: current;
+  padding: 2rem;
+  font-size: var(--font-size-subhead);
 }
+.current-weather-top {
+  width: 100%;
+  height: 50%;
+  display: inline-block;
+  text-align: center;
+}
+#cur-temp-t {
+  float: left;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+#cur-humidity-t  {
+  float: right;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.current-weather-bottom {
+  width: 100%;
+  height: 50%;
+  vertical-align: middle;
+  display: inline-block;
+  text-align: center;
+}
+#cur-windspeed-t {
+  float: left;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+#cur-uvIndexValue-t  {
+  float: right;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+
+
+
+
 .container-forecast {
     grid-area: forecast;
 }
