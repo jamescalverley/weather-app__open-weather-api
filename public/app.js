@@ -16,7 +16,6 @@
 //console.log("PROCESS.ENV", process.env )
 //let apiKey = process.env.API_KEY
 
-
 let searchCities = [];
 let apiKey = "4e033b3f0bf4413196c595a89671e437";
 
@@ -40,6 +39,7 @@ async function currentWeather(searchCity){
         let degree = String.fromCharCode(176);
         $("#cur-city-name-t").text(currentData.cityName);
         $("#cur-description-t").text(currentData.description);
+        $("#cur-date-t").text(moment(currentData.dt).format("dddd MMMM DD YYYY"))
         $("#cur-temp-t").text(`Temperature: ${currentData.temp}${degree}C`);
         $("#cur-humidity-t").text(`Humidity: ${currentData.humidity} %`);
         $("#cur-windspeed-t").text(`Windspeed: ${currentData.windspeed} km/h`);
@@ -82,35 +82,40 @@ async function fiveDayForecast(searchCity){
     // create array of objects to hold all forecast data
     let forecastData = [
         {
-            date: response.list[3].dt_txt,
+            dateDay: moment(response.list[3].dt_txt).format("dddd"),
+            dateFull: moment(response.list[3].dt_txt).format("MM/DD/YY"),
             icon: response.list[3].weather[0].icon,
             description: response.list[3].weather[0].description,
             temp: Math.floor(response.list[3].main.temp - 273.15),
             humidity: response.list[3].main.humidity        
         },
         {
-            date: response.list[11].dt_txt,
+            dateDay: moment(response.list[11].dt_txt).format("dddd"),
+            dateFull: moment(response.list[11].dt_txt).format("MM/DD/YY"),
             icon: response.list[11].weather[0].icon,
             description: response.list[11].weather[0].description,
             temp: Math.floor(response.list[11].main.temp - 273.15),
             humidity: response.list[11].main.humidity        
         },
         {
-            date: response.list[19].dt_txt,
+            dateDay: moment(response.list[19].dt_txt).format("dddd"),
+            dateFull: moment(response.list[19].dt_txt).format("MM/DD/YY"),
             icon: response.list[19].weather[0].icon,
             description: response.list[19].weather[0].description,
             temp: Math.floor(response.list[19].main.temp - 273.15),
             humidity: response.list[19].main.humidity        
         },
         {
-            date: response.list[27].dt_txt,
+            dateDay: moment(response.list[27].dt_txt).format("dddd"),
+            dateFull: moment(response.list[27].dt_txt).format("MM/DD/YY"),
             icon: response.list[27].weather[0].icon,
             description: response.list[27].weather[0].description,
             temp: Math.floor(response.list[27].main.temp - 273.15),
             humidity: response.list[27].main.humidity        
         },
         {
-            date: response.list[35].dt_txt,
+            dateDay: moment(response.list[35].dt_txt).format("dddd"),
+            dateFull: moment(response.list[35].dt_txt).format("MM/DD/YY"),
             icon: response.list[35].weather[0].icon,
             description: response.list[35].weather[0].description,
             temp: Math.floor(response.list[35].main.temp - 273.15),
@@ -125,7 +130,8 @@ async function fiveDayForecast(searchCity){
     forecastData.forEach( (forecastDay) => {
         forecastDisplay.innerHTML += `
         <div class="forecast-day-t">
-            <div class="fore-date-t">DATE</div>
+            <div class="fore-date-day-t">${forecastDay.dateDay}</div>
+            <div class="fore-date-full-t">${forecastDay.dateFull}</div>
             <div class="fore-icon-t">ICON</div>
             <div class="fore-description-t">${forecastDay.description}</div>
             <div class="fore-temp-t">Temp: ${forecastDay.temp}${degree}C</div>
