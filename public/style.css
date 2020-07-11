@@ -36,7 +36,14 @@ body {
 .container-search {
     grid-area: search;
     padding: 1.5rem;
-    
+}
+.recent-search-container {
+  display: flex;
+  flex-direction: row;
+}
+#clear-search {
+  margin-left: 40px;
+  
 }
 
 

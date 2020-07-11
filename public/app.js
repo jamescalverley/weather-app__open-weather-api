@@ -266,17 +266,17 @@ function handleRecentSearch(recentCity){
 
 function saveCity( city ){
     //console.log("**** running saveCity() >> saving", city)
-
     if( searchCities.indexOf(city) !== -1 ){
         return 
     } else {
-        if( searchCities.length < 7 ) {
+        if( searchCities.length < 6 ) {
             searchCities.unshift(city)
-        } if( searchCities.length >= 7 ) {
+        } if( searchCities.length >= 6 ) {
             searchCities.pop()
             searchCities.unshift(city)
         };
         renderSearchedList();
+        displayClearBtn();
     };  
     };
 
@@ -286,10 +286,10 @@ function storeCities(){
 
 function renderSearchedList(){
    // console.log("[renderSearchedList]")  
-    document.getElementById('recent-search').innerHTML = "Recent cities:"
-    searchCities.forEach( (searchCity) => {
+   document.getElementById('recent-search').innerHTML = " "; 
+   searchCities.forEach( (searchCity) => {
         document.getElementById('recent-search').innerHTML += `
-        <button class="btn btn-sm btn-outline-secondary" onClick="handleRecentSearch('${searchCity}')" type="button">${searchCity}</button>
+        <button class="btn btn-outline-secondary" onClick="handleRecentSearch('${searchCity}')" type="button">${searchCity}</button>
         `
     })
 };
@@ -299,18 +299,29 @@ function clearSearches(){
     searchCities = [];
     localStorage.clear();
     renderSearchedList();
+    displayClearBtn();
 };
 
 $('#clear-search').on('click', clearSearches)
 
+function displayClearBtn(){
+    if( searchCities.length == 0 ) {
+        document.getElementById('clear-search').style.display = "none";
+    } if( searchCities.length > 0 ) {
+        document.getElementById('clear-search').style.display = "inline-block";
+    }
+};
+
 function init(){
     let storedCities = JSON.parse(localStorage.getItem("searchedCities:"));
+    //document.getElementById('clear-search').style.display = "none";
     // console.log("getting from local storage >>>", storedCities )
     if( storedCities != null ) {
         searchCities = storedCities
     };
     // console.log("searchCities", searchCities)
     renderSearchedList();
+    displayClearBtn();
 };
 
 // let themeSlider = document.getElementById("theme-slider");
@@ -335,7 +346,7 @@ function uiWork(){
     fiveDayForecast("Toronto");
 };
 
-uiWork();
+//uiWork();
 init();
 
 
