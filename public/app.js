@@ -20,41 +20,92 @@ let searchCities = [];
 let apiKey = "4e033b3f0bf4413196c595a89671e437";
 
 async function currentWeather(searchCity){
-    console.log("[currentWeather fn ]");    
+   // console.log("[currentWeather fn ]");    
     let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${apiKey}`;
     $.ajax({
         url: queryURL, 
         method: "GET"
     }).then( ( response ) => {
-        console.log("Current weather data >>", response )
+        //console.log("Current weather data >>", response )
         let currentData = {
             cityName: response.name, 
             description: response.weather[0].description,
-            icon: "./Assets/current/clear-sky-128.png",
+            iconCode: response.weather[0].id,
             temp: Math.floor(response.main.temp - 273.15),
             humidity: response.main.humidity,
             windspeed: response.wind.speed, 
             coordLAT: response.coord.lat, 
             coordLON: response.coord.lon
         };
+
+        console.log(`Icon code: ${currentData.iconCode}`);
+        selectIcon(currentData.iconCode);
+
         let degree = String.fromCharCode(176);
         $("#cur-city-name-t").text(currentData.cityName);
         $("#cur-description-t").text(currentData.description);
         $("#cur-date-t").text(moment().format("dddd MMMM Do YYYY"));
-        $("#current-icon").attr("src", currentData.icon);
+        $("#current-icon").attr("src", selectIcon(currentData.iconCode));
         $("#cur-temp-t").text(`Temperature: ${currentData.temp}${degree}C`);
         $("#cur-humidity-t").text(`Humidity: ${currentData.humidity} %`);
         $("#cur-windspeed-t").text(`Windspeed: ${currentData.windspeed} km/h`);
         
-        console.log(currentData)
+        //console.log(currentData)
         saveCity( currentData.cityName );
         storeCities();
         getUVIndex(currentData.coordLAT, currentData.coordLON);
     } );
 };
 
+function selectIcon(code) {
+
+    const filePath = "./Assets/current/";
+    const icon = {
+        brokenClouds: "broken-clouds-128.png", 
+        clearSky: "clear-sky-128.png",
+        fewClouds: "few-clouds-128.png",
+        mist: "mist-128.png", 
+        rain: "rain-128.png", 
+        scatteredClouds: "scattered-clouds-128.png", 
+        showerRain: "shower-rain-128.png", 
+        snow: "snow-128.png", 
+        thunderstorm: "thunderstorm-128.png"
+    };
+    if( code >= 200 && code <= 232) {
+        console.log("ICON == thunderstorm")
+        return filePath + icon.thunderstorm
+    } if( code >= 300 && code <= 321) {
+        console.log("ICON == shower-rain")
+        return filePath + icon.showerRain
+    } if( code >= 500  && code <= 531) {
+        console.log("ICON == rain")
+        return filePath + icon.rain
+    } if( code >= 600  && code <= 622) {
+        console.log("ICON == snow")
+        return filePath + icon.snow
+    } if( code >= 701  && code <= 781) {
+        console.log("ICON == mist")
+        return filePath + icon.mist
+    } if( code == 800 ) {
+        console.log("ICON == clear-sky")
+        return filePath + icon.clearSky
+    } if( code == 801 ) {
+        console.log("ICON == few-clouds")
+        return filePath + icon.fewClouds
+    } if( code == 802 ) {
+        console.log("ICON == scattered-clouds")
+        return filePath + icon.scatteredClouds
+    } if( code == 803 ) {
+        console.log("ICON == broken-clouds")
+        return filePath + icon.brokenClouds
+    } if( code == 804 ) {
+        console.log("ICON == broken-clouds (overcast)")
+        return filePath + icon.brokenClouds
+    } 
+};
+
 async function getUVIndex(coordLAT, coordLON){
-    console.log(` [getUVIndex] : LAT: ${coordLAT} LON: ${coordLON}`)
+    //console.log(` [getUVIndex] : LAT: ${coordLAT} LON: ${coordLON}`)
     let queryURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${coordLAT}&lon=${coordLON}`
     $.ajax({
         url: queryURL,
@@ -74,13 +125,13 @@ async function getUVIndex(coordLAT, coordLON){
 }
 
 async function fiveDayForecast(searchCity){
-    console.log("[fiveDayForcast fn ]");
+   // console.log("[fiveDayForcast fn ]");
     let queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${searchCity}&appid=${apiKey}`;
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then( ( response ) => {
-        console.log("5 day forecast data >>", response)
+        //console.log("5 day forecast data >>", response)
     // create array of objects to hold all forecast data
     let forecastData = [
         {
@@ -124,7 +175,7 @@ async function fiveDayForecast(searchCity){
             humidity: response.list[35].main.humidity        
         }
     ]; 
-    console.log(forecastData)  
+    //console.log(forecastData)  
     let forecastDisplay = document.getElementById('forecast-weather-t');
     let degree = String.fromCharCode(176);
     forecastDisplay.innerHTML = "";
@@ -164,16 +215,15 @@ document.addEventListener('keydown', (event) => {
 });
 
 function handleRecentSearch(recentCity){
-    console.log("[handleRecentSearch fn ]");
+    //console.log("[handleRecentSearch fn ]");
     currentWeather(recentCity);
     fiveDayForecast(recentCity);
 };
 
 function saveCity( city ){
-    console.log("**** running saveCity() >> saving", city)
+    //console.log("**** running saveCity() >> saving", city)
 
     if( searchCities.indexOf(city) !== -1 ){
-        console.log("city already exists")
         return 
     } else {
         if( searchCities.length < 7 ) {
@@ -182,7 +232,6 @@ function saveCity( city ){
             searchCities.pop()
             searchCities.unshift(city)
         };
-        console.log("saved cities: ", searchCities )
         renderSearchedList();
     };  
     };
@@ -192,7 +241,7 @@ function storeCities(){
 };
 
 function renderSearchedList(){
-    console.log("[renderSearchedList]")  
+   // console.log("[renderSearchedList]")  
     document.getElementById('recent-search').innerHTML = "Recent cities:"
     searchCities.forEach( (searchCity) => {
         document.getElementById('recent-search').innerHTML += `
@@ -212,11 +261,11 @@ $('#clear-search').on('click', clearSearches)
 
 function init(){
     let storedCities = JSON.parse(localStorage.getItem("searchedCities:"));
-    console.log("getting from local storage >>>", storedCities )
+    // console.log("getting from local storage >>>", storedCities )
     if( storedCities != null ) {
         searchCities = storedCities
     };
-    console.log("searchCities", searchCities)
+    // console.log("searchCities", searchCities)
     renderSearchedList();
 };
 
