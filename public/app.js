@@ -41,7 +41,7 @@ async function currentWeather(searchCity){
         $("#cur-city-name-t").text(currentData.cityName);
         $("#cur-description-t").text(currentData.description);
         $("#cur-date-t").text(moment().format("dddd MMMM Do YYYY"));
-        $("#current-icon").attr("src", selectIcon(currentData.iconCode));
+        $("#current-icon").attr("src", selectIconCurrent(currentData.iconCode));
         $("#cur-temp-t").text(`Temperature: ${currentData.temp}${degree}C`);
         $("#cur-humidity-t").text(`Humidity: ${currentData.humidity} %`);
         $("#cur-windspeed-t").text(`Windspeed: ${currentData.windspeed} km/h`);
@@ -53,7 +53,101 @@ async function currentWeather(searchCity){
     } );
 };
 
-function selectIcon(code) {
+async function getUVIndex(coordLAT, coordLON){
+    //console.log(` [getUVIndex] : LAT: ${coordLAT} LON: ${coordLON}`)
+    let queryURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${coordLAT}&lon=${coordLON}`
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then( ( response) => {
+        let uvIndex = response.value;
+        $("#cur-uvIndexValue-t").text(`UV: ${uvIndex}`);
+        // document.getElementById('uvIndexValue').innerText = uvIndex;
+        // if(uvIndex <= 3){
+        //     document.getElementById('uvIndexValue').className = "badge badge-success";
+        // }if(uvIndex > 3 && uvIndex <= 7){
+        //     document.getElementById('uvIndexValue').className = "badge badge-warning";
+        // }if(uvIndex > 7){
+        //     document.getElementById('uvIndexValue').className = "badge badge-danger";
+        // }
+    });
+}
+
+async function fiveDayForecast(searchCity){
+   // console.log("[fiveDayForcast fn ]");
+    let queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${searchCity}&appid=${apiKey}`;
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then( ( response ) => {
+        //console.log("5 day forecast data >>", response)
+    // create array of objects to hold all forecast data
+    let forecastData = [
+        {
+            dateDay: moment(response.list[3].dt_txt).format("dddd"),
+            dateFull: moment(response.list[3].dt_txt).format("MM/DD/YY"),
+            icon: selectIconForecast(response.list[3].weather[0].id),
+            description: response.list[3].weather[0].description,
+            temp: Math.floor(response.list[3].main.temp - 273.15),
+            humidity: response.list[3].main.humidity        
+        },
+        {
+            dateDay: moment(response.list[11].dt_txt).format("dddd"),
+            dateFull: moment(response.list[11].dt_txt).format("MM/DD/YY"),
+            icon: selectIconForecast(response.list[11].weather[0].id),
+            description: response.list[11].weather[0].description,
+            temp: Math.floor(response.list[11].main.temp - 273.15),
+            humidity: response.list[11].main.humidity        
+        },
+        {
+            dateDay: moment(response.list[19].dt_txt).format("dddd"),
+            dateFull: moment(response.list[19].dt_txt).format("MM/DD/YY"),
+            icon: selectIconForecast(response.list[19].weather[0].id),
+            description: response.list[19].weather[0].description,
+            temp: Math.floor(response.list[19].main.temp - 273.15),
+            humidity: response.list[19].main.humidity        
+        },
+        {
+            dateDay: moment(response.list[27].dt_txt).format("dddd"),
+            dateFull: moment(response.list[27].dt_txt).format("MM/DD/YY"),
+            icon: selectIconForecast(response.list[27].weather[0].id),
+            description: response.list[27].weather[0].description,
+            temp: Math.floor(response.list[27].main.temp - 273.15),
+            humidity: response.list[27].main.humidity        
+        },
+        {
+            dateDay: moment(response.list[35].dt_txt).format("dddd"),
+            dateFull: moment(response.list[35].dt_txt).format("MM/DD/YY"),
+            icon: selectIconForecast(response.list[35].weather[0].id),
+            description: response.list[35].weather[0].description,
+            temp: Math.floor(response.list[35].main.temp - 273.15),
+            humidity: response.list[35].main.humidity        
+        }
+    ]; 
+    //console.log(forecastData)  
+    let forecastDisplay = document.getElementById('forecast-weather-t');
+    let degree = String.fromCharCode(176);
+    forecastDisplay.innerHTML = "";
+
+    forecastData.forEach( (forecastDay) => {
+        forecastDisplay.innerHTML += `
+        <div class="forecast-day-t">
+            <div class="fore-date-day-t">${forecastDay.dateDay}</div>
+            <div class="fore-date-full-t">${forecastDay.dateFull}</div>
+            <div class="fore-icon-t">
+            <img class="forecast-icon" src="${forecastDay.icon}" alt="forecast-weather-icon">
+            </div>
+            <div class="fore-description-t">${forecastDay.description}</div>
+            <div class="fore-temp-t">Temp: ${forecastDay.temp}${degree}C</div>
+            <div class="fore-humidity-t">Humidity: ${forecastDay.humidity} %</div>
+        </div>`
+    });
+    });
+};
+
+// ASSIGNS WEATHER ICONS
+
+function selectIconCurrent(code) {
     const filePath = "./Assets/current/";
     const icon = {
         brokenClouds: "broken-clouds-128.png", 
@@ -99,94 +193,50 @@ function selectIcon(code) {
     } 
 };
 
-async function getUVIndex(coordLAT, coordLON){
-    //console.log(` [getUVIndex] : LAT: ${coordLAT} LON: ${coordLON}`)
-    let queryURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${coordLAT}&lon=${coordLON}`
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then( ( response) => {
-        let uvIndex = response.value;
-        $("#cur-uvIndexValue-t").text(`UV: ${uvIndex}`);
-        // document.getElementById('uvIndexValue').innerText = uvIndex;
-        // if(uvIndex <= 3){
-        //     document.getElementById('uvIndexValue').className = "badge badge-success";
-        // }if(uvIndex > 3 && uvIndex <= 7){
-        //     document.getElementById('uvIndexValue').className = "badge badge-warning";
-        // }if(uvIndex > 7){
-        //     document.getElementById('uvIndexValue').className = "badge badge-danger";
-        // }
-    });
-}
-
-async function fiveDayForecast(searchCity){
-   // console.log("[fiveDayForcast fn ]");
-    let queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${searchCity}&appid=${apiKey}`;
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then( ( response ) => {
-        //console.log("5 day forecast data >>", response)
-    // create array of objects to hold all forecast data
-    let forecastData = [
-        {
-            dateDay: moment(response.list[3].dt_txt).format("dddd"),
-            dateFull: moment(response.list[3].dt_txt).format("MM/DD/YY"),
-            icon: response.list[3].weather[0].icon,
-            description: response.list[3].weather[0].description,
-            temp: Math.floor(response.list[3].main.temp - 273.15),
-            humidity: response.list[3].main.humidity        
-        },
-        {
-            dateDay: moment(response.list[11].dt_txt).format("dddd"),
-            dateFull: moment(response.list[11].dt_txt).format("MM/DD/YY"),
-            icon: response.list[11].weather[0].icon,
-            description: response.list[11].weather[0].description,
-            temp: Math.floor(response.list[11].main.temp - 273.15),
-            humidity: response.list[11].main.humidity        
-        },
-        {
-            dateDay: moment(response.list[19].dt_txt).format("dddd"),
-            dateFull: moment(response.list[19].dt_txt).format("MM/DD/YY"),
-            icon: response.list[19].weather[0].icon,
-            description: response.list[19].weather[0].description,
-            temp: Math.floor(response.list[19].main.temp - 273.15),
-            humidity: response.list[19].main.humidity        
-        },
-        {
-            dateDay: moment(response.list[27].dt_txt).format("dddd"),
-            dateFull: moment(response.list[27].dt_txt).format("MM/DD/YY"),
-            icon: response.list[27].weather[0].icon,
-            description: response.list[27].weather[0].description,
-            temp: Math.floor(response.list[27].main.temp - 273.15),
-            humidity: response.list[27].main.humidity        
-        },
-        {
-            dateDay: moment(response.list[35].dt_txt).format("dddd"),
-            dateFull: moment(response.list[35].dt_txt).format("MM/DD/YY"),
-            icon: response.list[35].weather[0].icon,
-            description: response.list[35].weather[0].description,
-            temp: Math.floor(response.list[35].main.temp - 273.15),
-            humidity: response.list[35].main.humidity        
-        }
-    ]; 
-    //console.log(forecastData)  
-    let forecastDisplay = document.getElementById('forecast-weather-t');
-    let degree = String.fromCharCode(176);
-    forecastDisplay.innerHTML = "";
-
-    forecastData.forEach( (forecastDay) => {
-        forecastDisplay.innerHTML += `
-        <div class="forecast-day-t">
-            <div class="fore-date-day-t">${forecastDay.dateDay}</div>
-            <div class="fore-date-full-t">${forecastDay.dateFull}</div>
-            <div class="fore-icon-t">ICON</div>
-            <div class="fore-description-t">${forecastDay.description}</div>
-            <div class="fore-temp-t">Temp: ${forecastDay.temp}${degree}C</div>
-            <div class="fore-humidity-t">Humidity: ${forecastDay.humidity} %</div>
-        </div>`
-    });
-    });
+function selectIconForecast(code) {
+    const filePath = "./Assets/current/";
+    const icon = {
+        brokenClouds: "broken-clouds-128.png", 
+        clearSky: "clear-sky-128.png",
+        fewClouds: "few-clouds-128.png",
+        mist: "mist-128.png", 
+        rain: "rain-128.png", 
+        scatteredClouds: "scattered-clouds-128.png", 
+        showerRain: "shower-rain-128.png", 
+        snow: "snow-128.png", 
+        thunderstorm: "thunderstorm-128.png"
+    };
+    if( code >= 200 && code <= 232) {
+        console.log("ICON == thunderstorm")
+        return filePath + icon.thunderstorm
+    } if( code >= 300 && code <= 321) {
+        console.log("ICON == shower-rain")
+        return filePath + icon.showerRain
+    } if( code >= 500  && code <= 531) {
+        console.log("ICON == rain")
+        return filePath + icon.rain
+    } if( code >= 600  && code <= 622) {
+        console.log("ICON == snow")
+        return filePath + icon.snow
+    } if( code >= 701  && code <= 781) {
+        console.log("ICON == mist")
+        return filePath + icon.mist
+    } if( code == 800 ) {
+        console.log("ICON == clear-sky")
+        return filePath + icon.clearSky
+    } if( code == 801 ) {
+        console.log("ICON == few-clouds")
+        return filePath + icon.fewClouds
+    } if( code == 802 ) {
+        console.log("ICON == scattered-clouds")
+        return filePath + icon.scatteredClouds
+    } if( code == 803 ) {
+        console.log("ICON == broken-clouds")
+        return filePath + icon.brokenClouds
+    } if( code == 804 ) {
+        console.log("ICON == broken-clouds (overcast)")
+        return filePath + icon.brokenClouds
+    } 
 };
 
 function handleClick(){
