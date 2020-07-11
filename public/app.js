@@ -194,24 +194,23 @@ function selectIconCurrent(code) {
 };
 
 function selectIconForecast(code) {
-    const filePath = "./Assets/current/";
+    const filePath = "./Assets/forecast/";
     const icon = {
-        brokenClouds: "broken-clouds-128.png", 
-        clearSky: "clear-sky-128.png",
-        fewClouds: "few-clouds-128.png",
-        mist: "mist-128.png", 
-        rain: "rain-128.png", 
-        scatteredClouds: "scattered-clouds-128.png", 
-        showerRain: "shower-rain-128.png", 
-        snow: "snow-128.png", 
-        thunderstorm: "thunderstorm-128.png"
+        brokenClouds: "broken-clouds-48.png", 
+        clearSky: "clear-sky-48.png",
+        fewClouds: "few-clouds-48.png",
+        mist: "mist-48.png", 
+        rain: "rain-48.png", 
+        scatteredClouds: "scattered-clouds-48.png", 
+        snow: "snow-48.png", 
+        thunderstorm: "thunderstorm-48.png"
     };
     if( code >= 200 && code <= 232) {
         console.log("ICON == thunderstorm")
         return filePath + icon.thunderstorm
     } if( code >= 300 && code <= 321) {
         console.log("ICON == shower-rain")
-        return filePath + icon.showerRain
+        return filePath + icon.rain
     } if( code >= 500  && code <= 531) {
         console.log("ICON == rain")
         return filePath + icon.rain
