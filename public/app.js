@@ -37,10 +37,6 @@ async function currentWeather(searchCity){
             coordLAT: response.coord.lat, 
             coordLON: response.coord.lon
         };
-
-        console.log(`Icon code: ${currentData.iconCode}`);
-        selectIcon(currentData.iconCode);
-
         let degree = String.fromCharCode(176);
         $("#cur-city-name-t").text(currentData.cityName);
         $("#cur-description-t").text(currentData.description);
@@ -58,7 +54,6 @@ async function currentWeather(searchCity){
 };
 
 function selectIcon(code) {
-
     const filePath = "./Assets/current/";
     const icon = {
         brokenClouds: "broken-clouds-128.png", 
