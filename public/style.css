@@ -1,41 +1,66 @@
-* {
-    margin: 0;
-    padding: 0;
-}
 
 body {
-    width: 100%;
-    height: 100vh;
-    padding: 60px 120px 5px 120px;
+  background-color: yellow;
+  width: 100%;
+  height: 100vh;
+  padding: 60px 120px 5px 120px;
 }
 
 
 :root {
-  --font-family: 'Roboto', sans-serif;
+  --main-background: #D4C4B4;
+  --font-family: 'Ubuntu', sans-serif;
   --font-size-head: 3rem;
   --font-size-subhead: 1.5rem;
+  --font-size-text: 1rem;
 }
 
-.main {
+@media (min-width: 600px) {
+  .display {
+    border-radius: 20px;
+    background-color: lightgray;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 0px;
+  }
+  .main {
+    display: grid;
+    grid-template-columns: 400px 1fr 1fr;
+    grid-template-rows: auto auto 1fr 1fr; 
+    grid-gap: 20px;
+    grid-template-areas: 
+    "search search search"
+    "title title title"
+    "current current current"
+    "forecast forecast forecast"
+    ;
+  }
+}
+
+@media (min-width: 1200px) {
+  .display {
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 0px;
+  }   
+  .main {
     display: grid;
     grid-template-columns: 400px 1fr 1fr;
     grid-template-rows: auto auto 1fr; 
-    grid-gap: 30px;
+    grid-gap: 20px;
     grid-template-areas: 
     "search search search"
     "title current current"
     "forecast forecast forecast"
     ;
+  }
 }
-.display {
-    border-radius: 20px;
-    border: 1px solid black;
-    padding: 10px;
-    margin: 0px;
-}
+
 .container-search {
-    grid-area: search;
-    padding: 1.5rem;
+  grid-area: search;
+  padding: 1.5rem;
 }
 .recent-search-container {
   display: flex;
@@ -83,23 +108,25 @@ body {
   height: 50%;
   display: inline-block;
   text-align: center;
+  background-color: yellowgreen;
 }
-#cur-temp-t {
+.metric-display {
   float: left;
   width: 50%;
   height: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  background-color: #2196F3;
+  font-family: var(--font-family);
 }
-#cur-humidity-t  {
-  float: right;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+.metric-number {
+  font-size: var(--font-size-subhead);
 }
+.metric-heading {
+  font-size: var(--font-size-text);
+}
+
 .current-weather-bottom {
   width: 100%;
   height: 50%;
@@ -107,22 +134,7 @@ body {
   display: inline-block;
   text-align: center;
 }
-#cur-windspeed-t {
-  float: left;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-#cur-uvIndexValue-t  {
-  float: right;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
+
 
 
 
@@ -242,3 +254,4 @@ body {
   .slider.round:before {
     border-radius: 50%;
   }
+

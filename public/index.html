@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Weather API</title>
 </head>
@@ -26,12 +26,8 @@
             </div>
             <div class="recent-search-container">
                 <div id="recent-search"></div>
-                <div id="clear-search-test">
-                    <button id="clear-search" class="btn btn-sm btn-outline-danger">clear X</button>
-                </div>
-                
+                <button id="clear-search" class="btn btn-sm btn-outline-danger">clear X</button>
             </div>
-            
             
         </div>
         <div class="display container-title">
@@ -47,12 +43,38 @@
         
         <div class="display container-current">
             <div class="current-weather-top">
-                <div id="cur-temp-t"></div>
-                <div id="cur-humidity-t"></div>
+                <div class="metric-display">
+                    <div class="metric-number">
+                        <div id="cur-temp-t"></div>
+                    </div>
+                    <div class="metric-heading">temperature</div>
+                </div>
+
+                <div class="metric-display">
+                    <div class="metric-number">
+                        <div id="cur-humidity-t"></div>
+                    </div>
+                    <div class="metric-heading">humidity</div>
+                </div>
             </div>
+
             <div class="current-weather-bottom">
-                <div id="cur-windspeed-t"></div>
-                <div id="cur-uvIndexValue-t"></div>
+                <div class="current-weather-top">
+                    <div class="metric-display">
+                        <div class="metric-number">
+                            <div id="cur-windspeed-t"></div>
+                        </div>
+                        <div class="metric-heading">wind speed</div>
+                    </div>
+                    
+                    <div class="metric-display">
+                        <div class="metric-number">
+                            <div id="cur-uvIndexValue-t"></div>
+                        </div>
+                        <div class="metric-heading">UV index</div>
+                    </div>
+                </div>
+                
             </div>
         </div>
         

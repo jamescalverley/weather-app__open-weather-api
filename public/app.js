@@ -42,9 +42,9 @@ async function currentWeather(searchCity){
         $("#cur-description-t").text(currentData.description);
         $("#cur-date-t").text(moment().format("dddd MMMM Do YYYY"));
         $("#current-icon").attr("src", selectIconCurrent(currentData.iconCode));
-        $("#cur-temp-t").text(`Temperature: ${currentData.temp}${degree}C`);
-        $("#cur-humidity-t").text(`Humidity: ${currentData.humidity} %`);
-        $("#cur-windspeed-t").text(`Windspeed: ${currentData.windspeed} km/h`);
+        $("#cur-temp-t").text(`${currentData.temp}${degree}C`);
+        $("#cur-humidity-t").text(`${currentData.humidity} %`);
+        $("#cur-windspeed-t").text(`${currentData.windspeed} km/h`);
         
         //console.log(currentData)
         saveCity( currentData.cityName );
@@ -61,7 +61,7 @@ async function getUVIndex(coordLAT, coordLON){
         method: "GET"
     }).then( ( response) => {
         let uvIndex = response.value;
-        $("#cur-uvIndexValue-t").text(`UV: ${uvIndex}`);
+        $("#cur-uvIndexValue-t").text(`${uvIndex}`);
         // document.getElementById('uvIndexValue').innerText = uvIndex;
         // if(uvIndex <= 3){
         //     document.getElementById('uvIndexValue').className = "badge badge-success";
@@ -346,7 +346,7 @@ function uiWork(){
     fiveDayForecast("Toronto");
 };
 
-//uiWork();
+uiWork();
 init();
 
 
