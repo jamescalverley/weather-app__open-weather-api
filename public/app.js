@@ -35,7 +35,9 @@ async function currentWeather(searchCity){
             humidity: response.main.humidity,
             windspeed: response.wind.speed, 
             coordLAT: response.coord.lat, 
-            coordLON: response.coord.lon
+            coordLON: response.coord.lon,
+            sunrise: response.sys.sunrise,
+            sunset: response.sys.sunset
         };
         let degree = String.fromCharCode(176);
         $("#cur-city-name-t").text(currentData.cityName);
@@ -45,6 +47,8 @@ async function currentWeather(searchCity){
         $("#cur-temp-t").text(`${currentData.temp}${degree}C`);
         $("#cur-humidity-t").text(`${currentData.humidity} %`);
         $("#cur-windspeed-t").text(`${currentData.windspeed} km/h`);
+        $("#cur-sunrise-t").text(moment.unix(currentData.sunrise).format('LT'));
+        $("#cur-sunset-t").text(moment.unix(currentData.sunset).format('LT'));
         
         //console.log(currentData)
         saveCity( currentData.cityName );
