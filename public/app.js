@@ -96,6 +96,7 @@ async function fiveDayForecast(searchCity){
             icon: selectIconForecast(response.list[3].weather[0].id),
             description: response.list[3].weather[0].description,
             temp: Math.floor(response.list[3].main.temp - 273.15),
+            feelsLike: Math.floor(response.list[3].main.feels_like - 273.15),
             humidity: response.list[3].main.humidity        
         },
         {
@@ -104,6 +105,7 @@ async function fiveDayForecast(searchCity){
             icon: selectIconForecast(response.list[11].weather[0].id),
             description: response.list[11].weather[0].description,
             temp: Math.floor(response.list[11].main.temp - 273.15),
+            feelsLike: Math.floor(response.list[11].main.feels_like - 273.15),
             humidity: response.list[11].main.humidity        
         },
         {
@@ -112,6 +114,7 @@ async function fiveDayForecast(searchCity){
             icon: selectIconForecast(response.list[19].weather[0].id),
             description: response.list[19].weather[0].description,
             temp: Math.floor(response.list[19].main.temp - 273.15),
+            feelsLike: Math.floor(response.list[19].main.feels_like - 273.15),
             humidity: response.list[19].main.humidity        
         },
         {
@@ -120,6 +123,7 @@ async function fiveDayForecast(searchCity){
             icon: selectIconForecast(response.list[27].weather[0].id),
             description: response.list[27].weather[0].description,
             temp: Math.floor(response.list[27].main.temp - 273.15),
+            feelsLike: Math.floor(response.list[27].main.feels_like - 273.15),
             humidity: response.list[27].main.humidity        
         },
         {
@@ -128,6 +132,7 @@ async function fiveDayForecast(searchCity){
             icon: selectIconForecast(response.list[35].weather[0].id),
             description: response.list[35].weather[0].description,
             temp: Math.floor(response.list[35].main.temp - 273.15),
+            feelsLike: Math.floor(response.list[35].main.feels_like - 273.15),
             humidity: response.list[35].main.humidity        
         }
     ]; 
@@ -145,8 +150,8 @@ async function fiveDayForecast(searchCity){
             <img class="forecast-icon" src="${forecastDay.icon}" alt="forecast-weather-icon">
             </div>
             <div class="fore-description-t">${forecastDay.description}</div>
-            <div class="fore-temp-t">Temp: ${forecastDay.temp}${degree}C</div>
-            <div class="fore-humidity-t">Humidity: ${forecastDay.humidity} %</div>
+            <div class="fore-temp-t">${forecastDay.temp}${degree}C / ${forecastDay.feelsLike}${degree}C</div>
+            <div class="fore-temp-desc-t">Temp. / feels like</div>
         </div>`
     });
     });
