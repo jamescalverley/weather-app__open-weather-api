@@ -27,28 +27,31 @@ async function currentWeather(searchCity){
         method: "GET"
     }).then( ( response ) => {
         //console.log("Current weather data >>", response )
+        
         let currentData = {
             cityName: response.name, 
             description: response.weather[0].description,
             iconCode: response.weather[0].id,
             temp: Math.floor(response.main.temp - 273.15),
+            feelsLike: Math.floor(response.main.feels_like - 273.15),
             humidity: response.main.humidity,
             windspeed: response.wind.speed, 
+            pressure: response.main.pressure / 10,
             coordLAT: response.coord.lat, 
-            coordLON: response.coord.lon,
-            sunrise: response.sys.sunrise,
-            sunset: response.sys.sunset
+            coordLON: response.coord.lon    
         };
         let degree = String.fromCharCode(176);
         $("#cur-city-name-t").text(currentData.cityName);
         $("#cur-description-t").text(currentData.description);
         $("#cur-date-t").text(moment().format("dddd MMMM Do YYYY"));
         $("#current-icon").attr("src", selectIconCurrent(currentData.iconCode));
+
         $("#cur-temp-t").text(`${currentData.temp}${degree}C`);
+        $("#cur-feelsLike-t").text(`${currentData.feelsLike}${degree}C`)
         $("#cur-humidity-t").text(`${currentData.humidity} %`);
         $("#cur-windspeed-t").text(`${currentData.windspeed} km/h`);
-        $("#cur-sunrise-t").text(moment.unix(currentData.sunrise).format('LT'));
-        $("#cur-sunset-t").text(moment.unix(currentData.sunset).format('LT'));
+        $("#cur-pressure-t").text(`${currentData.pressure} kPa`)
+        
         
         //console.log(currentData)
         saveCity( currentData.cityName );
@@ -165,34 +168,34 @@ function selectIconCurrent(code) {
         thunderstorm: "thunderstorm-128.png"
     };
     if( code >= 200 && code <= 232) {
-        console.log("ICON == thunderstorm")
+        //console.log("ICON == thunderstorm")
         return filePath + icon.thunderstorm
     } if( code >= 300 && code <= 321) {
-        console.log("ICON == shower-rain")
+        //console.log("ICON == shower-rain")
         return filePath + icon.showerRain
     } if( code >= 500  && code <= 531) {
-        console.log("ICON == rain")
+        //console.log("ICON == rain")
         return filePath + icon.rain
     } if( code >= 600  && code <= 622) {
-        console.log("ICON == snow")
+        //console.log("ICON == snow")
         return filePath + icon.snow
     } if( code >= 701  && code <= 781) {
-        console.log("ICON == mist")
+        //console.log("ICON == mist")
         return filePath + icon.mist
     } if( code == 800 ) {
-        console.log("ICON == clear-sky")
+        //console.log("ICON == clear-sky")
         return filePath + icon.clearSky
     } if( code == 801 ) {
-        console.log("ICON == few-clouds")
+        //console.log("ICON == few-clouds")
         return filePath + icon.fewClouds
     } if( code == 802 ) {
-        console.log("ICON == scattered-clouds")
+        //console.log("ICON == scattered-clouds")
         return filePath + icon.scatteredClouds
     } if( code == 803 ) {
-        console.log("ICON == broken-clouds")
+        //console.log("ICON == broken-clouds")
         return filePath + icon.brokenClouds
     } if( code == 804 ) {
-        console.log("ICON == broken-clouds (overcast)")
+        //console.log("ICON == broken-clouds (overcast)")
         return filePath + icon.brokenClouds
     } 
 };
@@ -210,34 +213,34 @@ function selectIconForecast(code) {
         thunderstorm: "thunderstorm-48.png"
     };
     if( code >= 200 && code <= 232) {
-        console.log("ICON == thunderstorm")
+       // console.log("ICON == thunderstorm")
         return filePath + icon.thunderstorm
     } if( code >= 300 && code <= 321) {
-        console.log("ICON == shower-rain")
+        //console.log("ICON == shower-rain")
         return filePath + icon.rain
     } if( code >= 500  && code <= 531) {
-        console.log("ICON == rain")
+        //console.log("ICON == rain")
         return filePath + icon.rain
     } if( code >= 600  && code <= 622) {
-        console.log("ICON == snow")
+        //console.log("ICON == snow")
         return filePath + icon.snow
     } if( code >= 701  && code <= 781) {
-        console.log("ICON == mist")
+        //console.log("ICON == mist")
         return filePath + icon.mist
     } if( code == 800 ) {
-        console.log("ICON == clear-sky")
+       // console.log("ICON == clear-sky")
         return filePath + icon.clearSky
     } if( code == 801 ) {
-        console.log("ICON == few-clouds")
+        //console.log("ICON == few-clouds")
         return filePath + icon.fewClouds
     } if( code == 802 ) {
-        console.log("ICON == scattered-clouds")
+        //console.log("ICON == scattered-clouds")
         return filePath + icon.scatteredClouds
     } if( code == 803 ) {
-        console.log("ICON == broken-clouds")
+        //console.log("ICON == broken-clouds")
         return filePath + icon.brokenClouds
     } if( code == 804 ) {
-        console.log("ICON == broken-clouds (overcast)")
+        //console.log("ICON == broken-clouds (overcast)")
         return filePath + icon.brokenClouds
     } 
 };
