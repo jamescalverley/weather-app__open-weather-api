@@ -40,7 +40,6 @@
   body {
     width: 100%;
     height: 100vh;
-    padding: 2rem 6rem 2rem 6rem;
   }
   .display {
     border-radius: 20px;
@@ -50,8 +49,9 @@
     margin: 0px;
   }   
   .main {
+    margin-bottom: 2rem;
     display: grid;
-    grid-template-columns: 400px 1fr 1fr;
+    grid-template-columns: auto 1fr 1fr;
     grid-template-rows: auto auto 1fr; 
     grid-gap: 20px;
     grid-template-areas: 
@@ -64,15 +64,27 @@
 
 .container-search {
   grid-area: search;
-  padding: 1.5rem;
+  padding: 1.5rem 3rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: row;
 }
+.search-box {
+  max-width: 500px;
+  min-width: 400px;
+  margin-right: 3rem;
+  
+}
+
 .recent-search-container {
   display: flex;
   flex-direction: row;
 }
+.recent-btn {
+  margin-right: 0.5rem;
+}
 #clear-search {
   margin-left: 40px;
-  
+  height: fit-content;
 }
 
 
@@ -80,6 +92,7 @@
 /* CURRENT WEATHER TITLE DISPLAY */
 .container-title {
   grid-area: title;
+  margin-left: 6rem;
   padding: 1rem 2rem 1rem 2rem;
   font-family: var(--font-family);
   display: inline-block
@@ -92,7 +105,6 @@
 .cur-icon-t {
   float: right;
 }
-
 #cur-city-name-t {
   font-size: var(--font-size-head);
 }
@@ -104,6 +116,7 @@
 /* CURRENT WEATHER METRICS DISPLAY */
 .container-current {
   grid-area: current;
+  margin-right: 6rem;
   padding: 2rem;
   font-size: var(--font-size-subhead);
 }
@@ -146,6 +159,8 @@
 
 .container-forecast {
   grid-area: forecast;
+  margin-left: 6rem;
+  margin-right: 6rem;
 }
 .input-group {
   max-width: 500px;

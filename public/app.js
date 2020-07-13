@@ -1,20 +1,3 @@
-//! TODO 
-//* COMPLETE pass all api data
-// create list of searched cities
-// disallow duplicates in search array
-//* COMPLETE add UV index function
-// add dates (use moment.js)
-// add alert for search with no match
-
-// research designs (dark and light theme)
-// currentWeather("Toronto");
-// fiveDayForecast("Toronto");
-
-//const currentDisplay = document.getElementById('current-weather');
-
-//require('dotenv').config();
-//console.log("PROCESS.ENV", process.env )
-//let apiKey = process.env.API_KEY
 
 let searchCities = [];
 let apiKey = "4e033b3f0bf4413196c595a89671e437";
@@ -301,7 +284,7 @@ function renderSearchedList(){
    document.getElementById('recent-search').innerHTML = " "; 
    searchCities.forEach( (searchCity) => {
         document.getElementById('recent-search').innerHTML += `
-        <button class="btn btn-outline-secondary" onClick="handleRecentSearch('${searchCity}')" type="button">${searchCity}</button>
+        <button class="btn btn-outline-secondary recent-btn" onClick="handleRecentSearch('${searchCity}')" type="button">${searchCity}</button>
         `
     })
 };
