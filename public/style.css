@@ -1,13 +1,16 @@
-
-
-
 :root {
   --main-background: #D4C4B4;
-  --font-family: 'Ubuntu', sans-serif;
+  --font-family: 'Poppins', sans-serif;
   --font-size-head: 3rem;
   --font-size-subhead: 1.8rem;
   --font-size-text: 1rem;
 }
+
+.main {
+  background-color: white;
+  height: 100vh;
+}
+
 
 @media (min-width: 576px) {
   body {
@@ -107,6 +110,11 @@
 }
 #cur-city-name-t {
   font-size: var(--font-size-head);
+  font-weight: 600;
+}
+#cur-description-t {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
 
 
@@ -138,6 +146,7 @@
 }
 .metric-number {
   font-size: var(--font-size-subhead);
+  font-weight: 600;
 }
 .metric-heading {
   font-size: var(--font-size-text);
@@ -159,8 +168,7 @@
 
 .container-forecast {
   grid-area: forecast;
-  margin-left: 6rem;
-  margin-right: 6rem;
+  margin: 0 6rem 6rem 6rem;
 }
 .input-group {
   max-width: 500px;
@@ -189,6 +197,7 @@
 
 .forecast-day-t {
   font-family: var(--font-family);
+  font-weight: 600;
   border: 1px solid black;
   border-radius: 1em;
   width: 20rem;
@@ -202,10 +211,12 @@
 }
 .fore-date-full-t {
   font-size: var(--font-size-text);
+  font-weight: 200;
+  font-style: italic;
 }
 .fore-temp-t {
   font-size: 1.3rem;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 
