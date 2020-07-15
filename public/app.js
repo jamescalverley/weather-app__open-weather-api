@@ -10,7 +10,7 @@ async function currentWeather(searchCity){
         method: "GET"
     }).then( ( response ) => {
         //console.log("Current weather data >>", response )
-        
+    
         let currentData = {
             cityName: response.name, 
             description: response.weather[0].description,
@@ -34,7 +34,6 @@ async function currentWeather(searchCity){
         $("#cur-humidity-t").text(`${currentData.humidity} %`);
         $("#cur-windspeed-t").text(`${currentData.windspeed} km/h`);
         $("#cur-pressure-t").text(`${currentData.pressure} kPa`)
-        
         
         //console.log(currentData)
         saveCity( currentData.cityName );
@@ -237,6 +236,7 @@ function handleClick(){
     let searchValue = $('#searchField').val();
     if( !searchValue ) {
         console.log("no search value!")
+        //! add alert !!! 
         return 
     } else {
         console.log("search value:", searchValue)
@@ -265,9 +265,9 @@ function saveCity( city ){
     if( searchCities.indexOf(city) !== -1 ){
         return 
     } else {
-        if( searchCities.length < 6 ) {
+        if( searchCities.length < 5 ) {
             searchCities.unshift(city)
-        } if( searchCities.length >= 6 ) {
+        } if( searchCities.length >= 5 ) {
             searchCities.pop()
             searchCities.unshift(city)
         };
