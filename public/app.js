@@ -250,6 +250,7 @@ $("#searchBtn").on("click", handleClick);
 document.addEventListener('keydown', (event) => {
     if( event.keyCode === 13 ) {
         handleClick();
+        $('#searchField').val(""); 
     }
 });
 

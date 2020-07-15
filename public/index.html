@@ -18,18 +18,36 @@
     </label> -->
    <div class="main">
         <div class="container-search">
-            <div class="search-box">
+            <div class="search-left">
+        
+                <div class="form">
+                    <input id="searchField" type="text" name="city-search" autocomplete="off" required/>
+                    <label for="city-search" class="label-name">
+                        <span class="content-name">search city</span>
+                    </label>
+                </div>
+                
+            </div>
+            
+
+
+
+            <!-- <div class="search-box">
                 <div class="input-group mb-3">
                     <input id="searchField" type="text" class="form-control" placeholder="search city" aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                     <button id="searchBtn" class="btn btn-outline-secondary" type="button">search</button>
                     </div>
                 </div>
-            </div>    
-            <div class="recent-search-container">
-                <div id="recent-search"></div>
-                <button id="clear-search" class="btn btn-sm btn-outline-danger">clear X</button>
+            </div>     -->
+            <div class="search-right">
+                <button id="searchBtn" class="btn btn-outline-secondary" type="button">search</button>
+                <div class="recent-search-container">
+                    <div id="recent-search"></div>
+                    <button id="clear-search" class="btn btn-sm btn-outline-danger">clear X</button>
+                </div>
             </div>
+            
             
             
         </div>
