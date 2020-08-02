@@ -59,6 +59,7 @@ body {
 .search-left {
   background-color: cadetblue;
   position: relative;
+  width: auto;
 }
 .form {
   font-size: 1rem;
@@ -112,6 +113,11 @@ body {
 .form input:focus + .label-name::after, 
 .form input:valid + .label-name::after {
   transform: translateX(0%)
+}
+
+#searchBtn {
+  left: 420px;
+  position: relative;
 }
 .search-right {
   position: relative;
@@ -260,7 +266,6 @@ body {
     display: none;
   }
   #forecast-weather-t {
-
     align-content: center;
     flex-wrap: wrap;
   }
@@ -303,10 +308,13 @@ body {
   .main {
     width: 100vw;
   }
+  .container-search {
+    display: none;
+  }
   .container-title {
     grid-area: title;
-    margin-left: 3rem;
-    margin-right: 3rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
   .current-title-t {
     margin-left: 2rem;
@@ -316,9 +324,13 @@ body {
   }
   .container-current {
     grid-area: current;
-    margin-left: 3rem;
-    margin-right: 3rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
   } 
+  .container-forecast {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
 
 }
 
