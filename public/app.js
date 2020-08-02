@@ -29,11 +29,11 @@ async function currentWeather(searchCity){
         $("#cur-date-t").text(moment().format("dddd MMMM Do YYYY"));
         $("#current-icon").attr("src", selectIconCurrent(currentData.iconCode));
 
-        $("#cur-temp-t").text(`${currentData.temp}${degree}C`);
-        $("#cur-feelsLike-t").text(`${currentData.feelsLike}${degree}C`)
-        $("#cur-humidity-t").text(`${currentData.humidity} %`);
-        $("#cur-windspeed-t").text(`${currentData.windspeed} km/h`);
-        $("#cur-pressure-t").text(`${currentData.pressure} kPa`)
+        $("#cur-temp-t").prepend(currentData.temp);
+        $("#cur-feelsLike-t").prepend(currentData.feelsLike)
+        $("#cur-humidity-t").prepend(currentData.humidity);
+        $("#cur-windspeed-t").prepend(currentData.windspeed);
+        $("#cur-pressure-t").prepend(currentData.pressure)
         
         //console.log(currentData)
         saveCity( currentData.cityName );
