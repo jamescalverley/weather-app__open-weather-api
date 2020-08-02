@@ -256,6 +256,10 @@ body {
 
 
 @media (max-width: 1100px) {
+  .main {
+    height: auto;
+  }
+
   .container-search {
     align-content: center;
   }
@@ -276,16 +280,11 @@ body {
 
 @media (max-width: 970px) {
   .main {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto auto auto; 
-    grid-gap: 20px;
-    grid-template-areas: 
-    "search search search"
-    "title title title"
-    "current current current"
-    "forecast forecast forecast"
-    ;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
   
   .container-title {
