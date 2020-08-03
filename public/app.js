@@ -29,11 +29,12 @@ async function currentWeather(searchCity){
         $("#cur-date-t").text(moment().format("dddd MMMM Do YYYY"));
         $("#current-icon").attr("src", selectIconCurrent(currentData.iconCode));
 
-        $("#cur-temp-t").prepend(currentData.temp);
-        $("#cur-feelsLike-t").prepend(currentData.feelsLike)
-        $("#cur-humidity-t").prepend(currentData.humidity);
-        $("#cur-windspeed-t").prepend(currentData.windspeed);
-        $("#cur-pressure-t").prepend(currentData.pressure)
+        
+        $("#cur-temp-t").html(`${currentData.temp}<span class="metric-unit-lg"> &degC</span>`);
+        $("#cur-feelsLike-t").html(`${currentData.feelsLike}<span class="metric-unit-lg"> &degC</span>`);
+        $("#cur-humidity-t").html(`${currentData.humidity}<span class="metric-unit-lg"> %</span>`);
+        $("#cur-windspeed-t").html(`${currentData.windspeed}<span class="metric-unit-sm"> km/h</span>`);
+        $("#cur-pressure-t").html(`${currentData.pressure}<span class="metric-unit-sm"> kpa</span>`);
         
         //console.log(currentData)
         saveCity( currentData.cityName );
@@ -51,16 +52,8 @@ async function getUVIndex(coordLAT, coordLON){
     }).then( ( response) => {
         let uvIndex = response.value;
         $("#cur-uvIndexValue-t").text(`${uvIndex}`);
-        // document.getElementById('uvIndexValue').innerText = uvIndex;
-        // if(uvIndex <= 3){
-        //     document.getElementById('uvIndexValue').className = "badge badge-success";
-        // }if(uvIndex > 3 && uvIndex <= 7){
-        //     document.getElementById('uvIndexValue').className = "badge badge-warning";
-        // }if(uvIndex > 7){
-        //     document.getElementById('uvIndexValue').className = "badge badge-danger";
-        // }
     });
-}
+};
 
 async function fiveDayForecast(searchCity){
    // console.log("[fiveDayForcast fn ]");
@@ -232,7 +225,8 @@ function selectIconForecast(code) {
     } 
 };
 
-function handleClick(){
+function handleClick(ev){
+    // ev.preventDefault();
     let searchValue = $('#searchField').val();
     if( !searchValue ) {
         console.log("no search value!")
