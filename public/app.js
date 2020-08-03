@@ -23,7 +23,7 @@ async function currentWeather(searchCity){
             coordLAT: response.coord.lat, 
             coordLON: response.coord.lon    
         };
-        let degree = String.fromCharCode(176);
+        
         $("#cur-city-name-t").text(currentData.cityName);
         $("#cur-description-t").text(currentData.description);
         $("#cur-date-t").text(moment().format("dddd MMMM Do YYYY"));
