@@ -305,28 +305,22 @@ function displayClearBtn(){
 function hideNav(){
     let maxWidth = document.body.clientWidth;
     console.log("clientWidth =", maxWidth);
-    
+
     if( maxWidth > 970 ){
-        $(".nav-burger").css("display", "none")
+        $(".nav-burger").css("display", "none");
         $(".collapse").addClass("active").removeClass("collapse");
-
     } if(maxWidth < 970 && maxWidth > 768 ) {
-        $(".recent-btn").addClass("btn-sm")
-
+        $(".recent-btn").addClass("btn-sm");
     } else if( maxWidth < 768 ){
-       
         $(".active").addClass("collapse").removeClass("active");
         $(".nav-burger").css("display", "block");
+        $(".recent-btn").addClass("btn-sm");
     };
 };
 
 window.addEventListener('resize', () => {
     hideNav();
 })
-
-hideNav();
-
-
 
 function init(){
     let storedCities = JSON.parse(localStorage.getItem("searchedCities:"));
@@ -336,6 +330,7 @@ function init(){
         searchCities = storedCities
     };
     // console.log("searchCities", searchCities)
+    hideNav();
     renderSearchedList();
     displayClearBtn();
 };
@@ -358,8 +353,9 @@ function init(){
 
 // for working on UI
 function uiWork(){
-    currentWeather("Toronto");
-    fiveDayForecast("Toronto");
+    const search = "Toronto";
+    currentWeather(search);
+    fiveDayForecast(search);
 };
 
 uiWork();

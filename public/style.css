@@ -7,15 +7,20 @@
 
   --light-background-color: #E5E5E5;
   --light-font-color: #121825;
+
+  --gray01: #e9ecef;
 }
 body {
   width: 100vw;
   height: 100vh;
   background-color: var(--light-background-color);
+  padding: 0;
+  margin: 0;
 }
 .main {
   background-color: var(--light-background-color);
-  height: auto;
+  height: 100%;
+
   color: var(--light-font-color);
 }
 
@@ -50,23 +55,24 @@ body {
 }
 
 .container-search {
-  grid-area: search;
   height: fit-content;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 2rem;
 }
 .search-box {
   min-width: 400px;
+  margin-right: 40px;
 }
-
 
 .recent-search-container {
   display: flex;
   flex-direction: row;
-  margin-left: 40px;
 }
 .recent-btn {
   margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 #clear-search {
   margin-left: 20px;
