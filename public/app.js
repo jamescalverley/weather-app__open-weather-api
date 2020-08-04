@@ -322,6 +322,30 @@ window.addEventListener('resize', () => {
     hideNav();
 })
 
+function themeSelect(toggle){
+    let theme = toggle;
+    console.log("[ themeSelect() ]", theme)
+    switch (theme) {
+        case "dark" : 
+            console.log("DARK")
+            $(".light").addClass("dark").removeClass("light");
+            break;
+        case "light" : 
+            console.log("LIGHT")
+            $(".dark").addClass("light").removeClass("dark");
+            break;
+    };
+};
+
+$("#darkToggle").on('click', () => {
+    themeSelect("dark");
+});
+$("#lightToggle").on('click', () => {
+    themeSelect("light") 
+
+});
+
+
 function init(){
     let storedCities = JSON.parse(localStorage.getItem("searchedCities:"));
     //document.getElementById('clear-search').style.display = "none";
