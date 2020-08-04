@@ -9,7 +9,22 @@
   --light-font-color: #121825;
 
   --gray01: #e9ecef;
+  --gray02: #dee2e6;
+  --gray03: #ced4da;
+  --gray04: #adb5bd;
+  --gray05: #6c757d;
+  --gray06: #495057;
+  --gray07: #343a40;
+  --gray08: #212529;
 }
+.light {
+  --bg-color: var(--gray03);
+}
+.dark {
+  --bg-color: var(--gray07);
+}
+
+
 body {
   width: 100vw;
   height: 100vh;
@@ -111,6 +126,7 @@ body {
   margin-right: 6rem;
   padding: 2rem;
   font-size: var(--font-size-subhead);
+  background-color: var(--bg-color);
 }
 .current-weather-top {
   width: 100%;
