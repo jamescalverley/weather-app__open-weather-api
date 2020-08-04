@@ -302,6 +302,24 @@ function displayClearBtn(){
     }
 };
 
+function hideNav(){
+    let maxWidth = document.body.clientWidth
+    console.log("clientWidth =", maxWidth)
+    if( maxWidth < 900 ){
+        $(".bg-light").addClass("bg-dark");
+    }
+};
+
+window.addEventListener('resize', () => {
+    
+    console.log("window resize")
+    hideNav();
+})
+
+hideNav();
+
+
+
 function init(){
     let storedCities = JSON.parse(localStorage.getItem("searchedCities:"));
     //document.getElementById('clear-search').style.display = "none";

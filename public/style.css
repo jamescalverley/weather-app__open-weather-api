@@ -43,14 +43,21 @@ body {
 }
 
 /* ----- SEARCH AREA ----- */
+
+.container-nav {
+  grid-area: search;
+  height: fit-content;
+}
+
+.nav-burger {
+  display: none;
+}
+
 .container-search {
   grid-area: search;
   height: fit-content;
-  padding: 3rem 3rem 1rem 3rem;
   display: flex;
   flex-direction: row;
-  background-color: #848484;
-  background-color: white;
 }
 .search-box {
   min-width: 400px;
@@ -243,6 +250,9 @@ body {
   }
   .container-search {
     display: none;
+  }
+  .nav-burger {
+    display: block;
   }
   .container-title {
     grid-area: title;
