@@ -330,7 +330,6 @@ function themeSelect(toggle){
             console.log("DARK")
             $(".light").addClass("dark").removeClass("light");
             $(".bg-light").addClass("bg-dark").removeClass("bg-light");
-        
             break;
         case "light" : 
             console.log("LIGHT")
@@ -338,6 +337,7 @@ function themeSelect(toggle){
             $(".bg-dark").addClass("bg-light").removeClass("bg-dark");
             break;
     };
+    storeTheme(theme);
 };
 
 $("#darkToggle").on('click', () => {
@@ -345,9 +345,21 @@ $("#darkToggle").on('click', () => {
 });
 $("#lightToggle").on('click', () => {
     themeSelect("light") 
-
 });
 
+function storeTheme(theme){
+    console.log("Storing theme:", theme)
+    localStorage.setItem("theme", theme)
+};
+function initTheme(){
+    let savedTheme = localStorage.getItem("theme");
+    console.log("Saved theme:", savedTheme);
+    if(savedTheme) {
+        themeSelect(savedTheme);
+    } else if(!savedTheme) {
+        themeSelect("light");
+    }
+};
 
 function init(){
     let storedCities = JSON.parse(localStorage.getItem("searchedCities:"));
@@ -360,23 +372,9 @@ function init(){
     hideNav();
     renderSearchedList();
     displayClearBtn();
+    initTheme();
 };
 
-// let themeSlider = document.getElementById("theme-slider");
-// let testBox = document.getElementById("test-box");
-
-// function themeSelect(){
-//     if( themeSlider.checked ) {
-//         console.log("slider CHECKED")
-//         testBox.className = "test-dark"
-//     } if( !themeSlider.checked) {
-//         console.log("slider NOT CHECKED")
-//         testBox.className = "test-light"
-//     };
-// };
-
-// document.getElementById("theme-slider").addEventListener('change', themeSelect );
-// themeSlider.addEventListener('change', themeSelect );
 
 // for working on UI
 function uiWork(){
