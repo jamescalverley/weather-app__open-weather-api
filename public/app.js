@@ -329,10 +329,13 @@ function themeSelect(toggle){
         case "dark" : 
             console.log("DARK")
             $(".light").addClass("dark").removeClass("light");
+            $(".bg-light").addClass("bg-dark").removeClass("bg-light");
+        
             break;
         case "light" : 
             console.log("LIGHT")
             $(".dark").addClass("light").removeClass("dark");
+            $(".bg-dark").addClass("bg-light").removeClass("bg-dark");
             break;
     };
 };

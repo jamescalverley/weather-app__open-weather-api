@@ -8,6 +8,7 @@
   --light-background-color: #E5E5E5;
   --light-font-color: #121825;
 
+  --white: #f8f9fa;
   --gray01: #e9ecef;
   --gray02: #dee2e6;
   --gray03: #ced4da;
@@ -18,24 +19,28 @@
   --gray08: #212529;
 }
 .light {
-  --bg-color: var(--gray03);
+  --bg-color: var(--white);
+  --bg-main: var(--gray01);
+  --text: var(--gray07);
+  --border-color: var(--gray08);
 }
 .dark {
   --bg-color: var(--gray07);
+  --bg-main: var(--gray06);
+  --text: var(--gray03);
+  --border-color: var(--gray06);
 }
 
 
 body {
   width: 100vw;
   height: 100vh;
-  background-color: var(--light-background-color);
   padding: 0;
   margin: 0;
 }
 .main {
-  background-color: var(--light-background-color);
+  background-color: var(--bg-main);
   height: 100%;
-
   color: var(--light-font-color);
 }
 
@@ -104,7 +109,9 @@ body {
   margin-left: 6rem;
   padding: 1rem 2rem 1.5rem 2rem;
   font-family: var(--font-family);
-  display: inline-block
+  display: inline-block;
+  background-color: var(--bg-color);
+  color: var(--text);
 }
 .current-title-t {
   float: left;
@@ -130,6 +137,7 @@ body {
   padding: 2rem;
   font-size: var(--font-size-subhead);
   background-color: var(--bg-color);
+  color: var(--text);
 }
 .current-weather-top {
   width: 100%;
@@ -173,6 +181,8 @@ body {
 .container-forecast {
   grid-area: forecast;
   margin: 0 6rem auto 6rem;
+  background-color: var(--bg-color);
+  color: var(--text);
 }
 .input-group {
   max-width: 500px;
@@ -188,7 +198,7 @@ body {
 .forecast-day-t {
   font-family: var(--font-family);
   font-weight: 600;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   border-radius: 1em;
   width: 20rem;
   height: auto;
