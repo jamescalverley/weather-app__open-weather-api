@@ -84,9 +84,19 @@ body {
 .theme-toggle-container {
   margin-right: 40px;
 }
+
+
 .search-box {
   max-width: 400px;
   margin-right: 40px;
+}
+#searchField {
+  background-color: var(--bg-main);
+  color: var(--text);
+  border: 1px solid var(--gray04);
+}
+#searchField:focus {
+  background-color: var(--bg-main);
 }
 
 .recent-search-container {
@@ -96,6 +106,7 @@ body {
 .recent-btn {
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
+  color: red;
 }
 #clear-search {
   margin-left: 20px;
@@ -238,9 +249,7 @@ body {
   .metric-heading {
     font-size: 0.9rem;
   }
-  /* .recent-search-container {
-    display: none;
-  } */
+
   #forecast-weather-t {
     align-content: center;
     flex-wrap: wrap;
@@ -279,7 +288,14 @@ body {
   .main {
     width: 100vw;
   }
-
+  .theme-toggle-container {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  .btn-group-toggle, .active {
+    visibility: visible;
+  }
   .container-title {
     grid-area: title;
     margin-left: 2rem;
