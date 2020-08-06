@@ -195,9 +195,9 @@ function handleClick(ev){
         alert("Search value required!")
         return 
     } else {
-        console.log("search value:", searchValue)
         currentWeather(searchValue);
         fiveDayForecast(searchValue);
+        setLastCity(searchValue);
     }
     $('#searchField').val("");    
 };
@@ -213,6 +213,7 @@ document.addEventListener('keydown', (event) => {
 function handleRecentSearch(recentCity){
     currentWeather(recentCity);
     fiveDayForecast(recentCity);
+    setLastCity(recentCity);
 };
 
 function saveCity( city ){
@@ -231,7 +232,7 @@ function saveCity( city ){
     };
 
 function storeCities(){
-    localStorage.setItem("searchedCities:", JSON.stringify(searchCities));
+    localStorage.setItem("searchedCities", JSON.stringify(searchCities));
 };
 
 function renderSearchedList(){
@@ -244,7 +245,7 @@ function renderSearchedList(){
 
 function clearSearches(){
     searchCities = [];
-    localStorage.clear();
+    localStorage.removeItem("searchedCities");
     renderSearchedList();
     displayClearBtn();
 };
@@ -305,26 +306,36 @@ function initTheme(){
     };
 };
 
+function setLastCity(city){
+    console.log(`Saving --${city}-- to local storage`);
+    localStorage.setItem("lastCity", city);
+};
+
+function initSearch(){
+    let defaultCity = "Toronto";
+    let initCity = localStorage.getItem("lastCity");
+    if( initCity ){
+        currentWeather(initCity);
+        fiveDayForecast(initCity);
+    } else {
+        console.log("running default city")
+        currentWeather(defaultCity);
+        fiveDayForecast(defaultCity);
+    }
+};
+
 function init(){
-    let storedCities = JSON.parse(localStorage.getItem("searchedCities:"));
+    let storedCities = JSON.parse(localStorage.getItem("searchedCities"));
     if( storedCities != null ) {
         searchCities = storedCities
     };
-    hideNav();
+    initSearch();
     renderSearchedList();
     displayClearBtn();
     initTheme();
+    hideNav();
 };
 
-// for working on UI
-function uiWork(){
-    const search = "Toronto";
-    currentWeather(search);
-    fiveDayForecast(search);
-};
-
-uiWork();
 init();
-
 
 
