@@ -338,6 +338,5 @@ function init(){
 
 init();
 
-localStorage.clear();
 
 
