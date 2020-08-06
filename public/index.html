@@ -8,35 +8,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,600;0,700;0,900;1,200;1,300&display=swap" rel="stylesheet">
-   
-    
-    <title>Weather API</title>
+    <title>Weather App</title>
 </head>
 <body class="light">
-    <!-- <label class="switch">
-        <input id="theme-slider" type="checkbox">
-        <span class="slider round"></span>
-    </label> -->
    <div class="main">
-
-       
         <div class="container-nav">
-
             <div class="pos-f-t">
                 <div class="active" id="searchContainer">
                     <div class="bg-light p-4">
-
                         <div class="container-search">
-
                             <div class="theme-toggle-container">
                                 <div class="btn-group btn-group-sm" role="group" aria-label="theme toggle">
                                     <button type="button" id="lightToggle" class="btn btn-sm btn-outline-secondary">light</button>
                                     <button type="button" id="darkToggle" class="btn btn-sm btn-secondary">dark</button>
                                 </div>
                             </div>
-                            
-
-
                             <div class="search-box">
                                 <div class="input-group mb-3">
                                     <input id="searchField" type="text" class="form-control" placeholder="search city" aria-label="Search" aria-describedby="basic-addon2">
@@ -59,10 +45,7 @@
                         </button>
                     </nav>
                 </div>
-               
             </div>
-
-           
         </div>
         <div class="display container-title">
             <div class="current-title-t">
@@ -74,46 +57,46 @@
                 <img id="current-icon" alt="current-weather-icon">
             </div>
         </div>
-        
         <div class="display container-current">
             <div class="current-weather-top">
                 <div class="metric-display">
+                    <div class="metric-heading">temperature</div>
                     <div class="metric-number">
                         <div id="cur-temp-t"></div>
                     </div>
-                    <div class="metric-heading">temperature</div>
                 </div>
                 <div class="metric-display">
+                    <div class="metric-heading">humidity</div>
                     <div class="metric-number">
                         <div id="cur-humidity-t"></div>
                     </div>
-                    <div class="metric-heading">humidity</div>
                 </div>
                 <div class="metric-display">
+                    <div class="metric-heading">UV index</div>
                     <div class="metric-number">
                         <div id="cur-uvIndexValue-t"></div>
                     </div>
-                    <div class="metric-heading">UV index</div>
                 </div>
             </div>
             <div class="current-weather-bottom">
                 <div class="metric-display">
+                    <div class="metric-heading">feels like</div>
                     <div class="metric-number">
                         <div id="cur-feelsLike-t"></div>
                     </div>
-                    <div class="metric-heading">feels like</div>
+                    
                 </div>
                 <div class="metric-display">
+                    <div class="metric-heading">windspeed</div>
                     <div class="metric-number">
                         <div id="cur-windspeed-t"></div>
                     </div>
-                    <div class="metric-heading">windspeed</div>
                 </div>
                 <div class="metric-display">
+                    <div class="metric-heading">pressure</div>
                     <div class="metric-number">
                         <div id="cur-pressure-t"></div>
                     </div>
-                    <div class="metric-heading">pressure</div>
                 </div>
             </div>
         </div>
@@ -124,15 +107,6 @@
             </div>
         </div>
    </div>
-   <script>
-
-    const object = {};
-
-
-
-   </script>
-   
-
     <script src="./app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </body>
