@@ -30,8 +30,6 @@
   --text: var(--gray03);
   --border-color: var(--gray06);
 }
-
-
 body {
   width: 100vw;
   height: 100vh;
@@ -43,7 +41,6 @@ body {
   height: 100%;
   color: var(--light-font-color);
 }
-
 .display {
   border-radius: 20px;
   background-color: white;
@@ -51,7 +48,6 @@ body {
   box-shadow: 0 0 12px 6px rgba(0,0,0,0.05);
   border-radius: 0.5rem;
 }
-
 .main {
   width: 100vw;
   height: 100vh;
@@ -68,12 +64,10 @@ body {
 }
 
 /* ----- SEARCH AREA ----- */
-
 .container-nav {
   grid-area: search;
   height: fit-content;
 }
-
 .container-search {
   height: fit-content;
   display: flex;
@@ -84,8 +78,6 @@ body {
 .theme-toggle-container {
   margin-right: 40px;
 }
-
-
 .search-box {
   max-width: 400px;
   margin-right: 40px;
@@ -98,7 +90,6 @@ body {
 #searchField:focus {
   background-color: var(--bg-main);
 }
-
 .recent-search-container {
   display: flex;
   flex-direction: row;
@@ -198,14 +189,12 @@ body {
 .input-group {
   max-width: 500px;
 } 
-
 #forecast-weather-t {
   padding: 0.5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
-
 .forecast-day-t {
   font-family: var(--font-family);
   font-weight: 600;
@@ -233,13 +222,10 @@ body {
   font-weight: 400;
 }
 
-
-
 @media (max-width: 1100px) {
   .main {
     height: auto;
   }
-
   .container-search {
     align-content: center;
   }
@@ -249,7 +235,6 @@ body {
   .metric-heading {
     font-size: 0.9rem;
   }
-
   #forecast-weather-t {
     align-content: center;
     flex-wrap: wrap;
@@ -264,7 +249,6 @@ body {
     padding-top: 0;
     padding-bottom: 1rem;
   }
-  
   .container-title {
     grid-area: title;
     margin-left: 6rem;
@@ -281,7 +265,6 @@ body {
     margin-top: 0;
     margin-left: 6rem;
   }
-
 }
 
 @media (max-width: 768px) {
@@ -334,7 +317,6 @@ body {
   }
   .container-current {
     padding: 2rem 1rem 2rem 1rem;
-    
   } 
   .metric-unit-lg {
     font-size: 1.2rem;
@@ -342,82 +324,4 @@ body {
   .metric-unit-sm {
     font-size: 0.8rem;
   }
-  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* THEME SLIDER */
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* The slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
-

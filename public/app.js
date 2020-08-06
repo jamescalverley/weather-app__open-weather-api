@@ -192,8 +192,7 @@ function selectIconForecast(code) {
 function handleClick(ev){
     let searchValue = $('#searchField').val();
     if( !searchValue ) {
-        console.log("no search value!")
-        //! add alert !!! 
+        alert("Search value required!")
         return 
     } else {
         console.log("search value:", searchValue)
