@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,600;0,700;0,900;1,200;1,300&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <title>Weather App</title>
 </head>
 <body class="light">
@@ -47,65 +48,68 @@
                 </div>
             </div>
         </div>
-        <div class="display container-title">
-            <div class="current-title-t">
-                <div id="cur-city-name-t"></div>
-                <div id="cur-description-t"></div>
-                <div id="cur-date-t"></div>
+        <div class="weather">
+            <div class="display container-title">
+                <div class="current-title-t">
+                    <div id="cur-city-name-t"></div>
+                    <div id="cur-description-t"></div>
+                    <div id="cur-date-t"></div>
+                </div>
+                <div class="cur-icon-t">
+                    <img id="current-icon" alt="current-weather-icon">
+                </div>
             </div>
-            <div class="cur-icon-t">
-                <img id="current-icon" alt="current-weather-icon">
+            <div class="display container-current">
+                <div class="current-weather-top">
+                    <div class="metric-display">
+                        <div class="metric-heading">temperature</div>
+                        <div class="metric-number">
+                            <div id="cur-temp-t"></div>
+                        </div>
+                    </div>
+                    <div class="metric-display">
+                        <div class="metric-heading">humidity</div>
+                        <div class="metric-number">
+                            <div id="cur-humidity-t"></div>
+                        </div>
+                    </div>
+                    <div class="metric-display">
+                        <div class="metric-heading">UV index</div>
+                        <div class="metric-number">
+                            <div id="cur-uvIndexValue-t"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="current-weather-bottom">
+                    <div class="metric-display">
+                        <div class="metric-heading">feels like</div>
+                        <div class="metric-number">
+                            <div id="cur-feelsLike-t"></div>
+                        </div>
+                        
+                    </div>
+                    <div class="metric-display">
+                        <div class="metric-heading">windspeed</div>
+                        <div class="metric-number">
+                            <div id="cur-windspeed-t"></div>
+                        </div>
+                    </div>
+                    <div class="metric-display">
+                        <div class="metric-heading">pressure</div>
+                        <div class="metric-number">
+                            <div id="cur-pressure-t"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="display container-forecast">
+                <div id="forecast-weather-t">
+                    <div class="forecast-day-t">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="display container-current">
-            <div class="current-weather-top">
-                <div class="metric-display">
-                    <div class="metric-heading">temperature</div>
-                    <div class="metric-number">
-                        <div id="cur-temp-t"></div>
-                    </div>
-                </div>
-                <div class="metric-display">
-                    <div class="metric-heading">humidity</div>
-                    <div class="metric-number">
-                        <div id="cur-humidity-t"></div>
-                    </div>
-                </div>
-                <div class="metric-display">
-                    <div class="metric-heading">UV index</div>
-                    <div class="metric-number">
-                        <div id="cur-uvIndexValue-t"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="current-weather-bottom">
-                <div class="metric-display">
-                    <div class="metric-heading">feels like</div>
-                    <div class="metric-number">
-                        <div id="cur-feelsLike-t"></div>
-                    </div>
-                    
-                </div>
-                <div class="metric-display">
-                    <div class="metric-heading">windspeed</div>
-                    <div class="metric-number">
-                        <div id="cur-windspeed-t"></div>
-                    </div>
-                </div>
-                <div class="metric-display">
-                    <div class="metric-heading">pressure</div>
-                    <div class="metric-number">
-                        <div id="cur-pressure-t"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="display container-forecast">
-            <div id="forecast-weather-t">
-                <div class="forecast-day-t">
-                </div>
-            </div>
-        </div>
+        
    </div>
     <script src="./app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

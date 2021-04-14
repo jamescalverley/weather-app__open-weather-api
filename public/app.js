@@ -220,24 +220,24 @@ function saveCity( city ){
     if( searchCities.indexOf(city) !== -1 ){
         return 
     } else {
-        if( searchCities.length < 5 ) {
+        if( searchCities.length < 5 || searchCities.length === 0 ) {
             searchCities.unshift(city)
-        } if( searchCities.length >= 5 ) {
+        } else if( searchCities.length === 5 ) {
             searchCities.pop()
             searchCities.unshift(city)
         };
         renderSearchedList();
         displayClearBtn();
-    };  
-    };
+    }; 
+};
 
 function storeCities(){
     localStorage.setItem("searchedCities", JSON.stringify(searchCities));
 };
 
 function renderSearchedList(){
-   document.getElementById('recent-search').innerHTML = " "; 
-   searchCities.forEach( (searchCity) => {
+    document.getElementById('recent-search').innerHTML = " "; 
+    searchCities.forEach( (searchCity) => {
         document.getElementById('recent-search').innerHTML += `
         <button class="btn btn-outline-secondary recent-btn" onClick="handleRecentSearch('${searchCity}')" type="button">${searchCity}</button>`
     });
@@ -307,7 +307,6 @@ function initTheme(){
 };
 
 function setLastCity(city){
-    console.log(`Saving --${city}-- to local storage`);
     localStorage.setItem("lastCity", city);
 };
 
@@ -318,7 +317,6 @@ function initSearch(){
         currentWeather(initCity);
         fiveDayForecast(initCity);
     } else {
-        console.log("running default city")
         currentWeather(defaultCity);
         fiveDayForecast(defaultCity);
     }
